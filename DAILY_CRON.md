@@ -53,13 +53,13 @@ channel the bot can read: pinned `#brainstorm` and `#propose`, plus everything
 `tools/discord/discover.ts` lists. The rule and its history are `AGENTS.md`'s
 ("Adding a Discord capture"): `@everyone` can view the channel and read its
 history, the bot can too, the channel is not age-restricted and holds messages,
-and no `DCWG_EXCLUDE_CHANNELS` entry names it. Such a channel is in scope
+and no `DODO_EXCLUDE_CHANNELS` entry names it. Such a channel is in scope
 whether or not its topic says "This channel is indexed by AI." — that
 per-channel requirement was dropped on 2026-11-03, when the server's main
 moderator confirmed with Ethan that archiving every public channel is fine
 because he had already assumed it was happening. The switch is the repository
-variable `DCWG_REQUIRE_ANNOTATION`, which is exactly `false`. Private channels,
-and whatever `DCWG_EXCLUDE_CHANNELS` names (`#github`, `#offtopic`), stay out;
+variable `DODO_REQUIRE_ANNOTATION`, which is exactly `false`. Private channels,
+and whatever `DODO_EXCLUDE_CHANNELS` names (`#github`, `#offtopic`), stay out;
 never assume a channel is excluded.
 
 ## The fold
@@ -116,7 +116,7 @@ committed through the gates. Then, in one change:
 
 - Delete `tools/discord/anthropic.ts`, `anthropic_test.ts`, `gemini.ts`,
   `gemini_test.ts`, `providers.ts`, `providers_test.ts`, `model.ts`,
-  `prompt/dcwg-pass.md`, and `prompt_test.ts`.
+  `prompt/dodo-pass.md`, and `prompt_test.ts`.
 - Remove the fold branches from `tools/discord/ingest.ts` and their assertions in
   `ingest_test.ts`, including `readPassInstructions`, `makeClient`,
   `runAnthropicPass`, and the provider resolution they pulled in.
@@ -127,7 +127,7 @@ committed through the gates. Then, in one change:
   connector.
 - Delete the then-unused repository secrets `GEMINI_API_KEY`,
   `AI_GATEWAY_API_KEY`, and `OPENROUTER_API_KEY`, and the repository variables
-  `DCWG_PROVIDER`, `DCWG_MODEL`, `DCWG_MAX_USD`. Deleting the workflow inputs
+  `DODO_PROVIDER`, `DODO_MODEL`, `DODO_MAX_USD`. Deleting the workflow inputs
   does not delete the secret; leaving it set keeps a gate regression spendable.
 
 Keep `discord.ts`, `discover.ts`, `capture.ts`, `pending.ts`, `index_page.ts`,

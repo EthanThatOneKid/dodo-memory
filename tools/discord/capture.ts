@@ -13,7 +13,7 @@ import { isoUtc } from "./discord.ts";
 export const TEXT_TYPES = new Set([0, 19, 20, 21]);
 
 export const DEFAULT_SERVER_LABEL = "the Deno Core Working Group Discord";
-export const DEFAULT_TAGS = ["deno", "dcwg", "discord"];
+export const DEFAULT_TAGS = ["deno", "dodo", "discord"];
 
 /** Double-quoted YAML scalar. JSON escaping is the same shape the record already uses. */
 export function yamlStr(value: string): string {

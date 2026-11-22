@@ -144,7 +144,7 @@ Deno.test("renderCapture frontmatter names the venue, span, and participants", (
   assert(text.includes("created: 2026-08-01"), text);
   assert(text.includes('  - "andy"\n  - "jef"\n'), text);
   assert(text.includes("3 messages, 2 participants"), text);
-  assert(text.includes('  - "deno"\n  - "dcwg"\n  - "discord"\n'), text);
+  assert(text.includes('  - "deno"\n  - "dodo"\n  - "discord"\n'), text);
   // The provenance paragraph states what is and is not in the record.
   assert(text.includes("not pasted from a client"), text);
   assert(text.includes("Bot and webhook"), text);

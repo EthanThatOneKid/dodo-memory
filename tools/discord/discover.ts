@@ -22,7 +22,7 @@
  * annotation status is logged, not enforced.
  *
  * Usage:
- *   DCWG_DISCORD_BOT_TOKEN=... deno run -A discover.ts --pinned-env VENUES
+ *   DODO_DISCORD_BOT_TOKEN=... deno run -A discover.ts --pinned-env VENUES
  *
  * Prints one `venue=channel` line per venue on stdout, pinned venues first, and the
  * channels it left out, with the reason, on stderr. If the server cannot be read it
@@ -154,7 +154,7 @@ export function slugify(name: string | null | undefined): string {
 /** A venue name no other venue has, falling back to the channel id when the name is no help. */
 export function venueName(name: string | null | undefined, channelId: string, taken: ReadonlySet<string>): string {
   const slug = slugify(name);
-  const base = `dcwg-${slug || channelId}`;
+  const base = `dodo-${slug || channelId}`;
   return taken.has(base) ? `${base}-${channelId.slice(-6)}` : base;
 }
 
@@ -197,7 +197,7 @@ export function discoverVenues(input: DiscoverInput): Discovery {
     if (!CAPTURABLE_TYPES.has(channel.type)) {
       skip(`type ${channel.type} has no message history to capture`);
     } else if (exclude.has(channel.id)) {
-      skip("excluded by DCWG_EXCLUDE_CHANNELS");
+      skip("excluded by DODO_EXCLUDE_CHANNELS");
     } else if (channel.nsfw) {
       skip("age-restricted");
     } else if (!canRead(permissionsFor(input.guildId, input.roles, channel, { roleIds: [] }))) {
@@ -294,7 +294,11 @@ async function main(argv: string[]): Promise<number> {
   const requireAnnotation = opts.get("require-annotation") !== "false";
 
   try {
-    const token = Deno.env.get(opts.get("token-env") || "DCWG_DISCORD_BOT_TOKEN");
+    // Transitional: DCWG_DISCORD_BOT_TOKEN still answers until the Zo secret
+    // and the workflow are renamed; remove once verified.
+    const tokenEnv = opts.get("token-env") || "DODO_DISCORD_BOT_TOKEN";
+    const token = Deno.env.get(tokenEnv) ??
+      (tokenEnv === "DODO_DISCORD_BOT_TOKEN" ? Deno.env.get("DCWG_DISCORD_BOT_TOKEN") : undefined);
     if (!token) throw new Error("no bot token in the environment");
     const me = await apiGet<{ id: string }>("/users/@me", token);
     const [channels, roles, member] = await Promise.all([

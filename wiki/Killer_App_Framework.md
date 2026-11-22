@@ -2,7 +2,7 @@
 "@type": schema:TechArticle
 schema:name: A "Killer App Framework" for Dodo
 schema:description: The 2026-10-21 #propose thread in which daniellacosse offered a fullstack framework as a showcase for the runtime, andy asked how it relates to the runtime, and SpaceMonkey argued against starting a new framework.
-wazoo:source: dcwg
+wazoo:source: dodo
 wazoo:thread: "1562291277209411675"
 wiki:priority: low
 ---

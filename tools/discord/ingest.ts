@@ -8,10 +8,10 @@
  * own validation fails, the page edits are reverted and the run reports
  * NEEDS_ATTENTION rather than committing prose that does not pass.
  *
- *   deno task ingest -- --channel <id> --venue dcwg-talk
+ *   deno task ingest -- --channel <id> --venue dodo-talk
  *
  * Credentials (never passed as arguments, never logged):
- *   DCWG_DISCORD_BOT_TOKEN   the capture bot's token
+ *   DODO_DISCORD_BOT_TOKEN   the capture bot's token
  *   ANTHROPIC_API_KEY        the wiki pass on --provider anthropic (the default), a Console API key
  *   GEMINI_API_KEY           the wiki pass on --provider gemini, a Google AI Studio key
  *
@@ -60,7 +60,7 @@ Usage:
 
 Required:
   --channel <id>        Discord channel id to capture
-  --venue <venue>       capture venue slug, e.g. dcwg-brainstorm (names the file)
+  --venue <venue>       capture venue slug, e.g. dodo-brainstorm (names the file)
 
 A venue is the channel plus every thread under it. A forum holds nothing else:
 its posts are threads, and the post body is the first message of one. A text
@@ -76,7 +76,7 @@ Options:
                         (default 200; 0 means no cap)
   --all                 ignore the cursor and pull from the channel's first message
   --since <iso>         ISO-8601 UTC lower bound (overrides the cursor)
-  --token-env <name>    env var holding the bot token (default: DCWG_DISCORD_BOT_TOKEN)
+  --token-env <name>    env var holding the bot token (default: DODO_DISCORD_BOT_TOKEN)
   --provider <name>     who answers the wiki pass: anthropic (default, billed per token) or
                         gemini (Google AI Studio; free tier unless the key's project is billed)
   --model <id>          model id for the wiki pass on that provider (default claude-opus-5-5 on
@@ -238,7 +238,7 @@ function parseCliArgs(argv: string[]): Args {
     limit: num("limit", 200),
     all: parsed.all === true,
     ...(since === undefined ? {} : { since }),
-    tokenEnv: str("token-env") ?? "DCWG_DISCORD_BOT_TOKEN",
+    tokenEnv: str("token-env") ?? "DODO_DISCORD_BOT_TOKEN",
     provider,
     ...(model === undefined ? {} : { model }),
     skipWiki: parsed["skip-wiki"] === true,
@@ -257,8 +257,14 @@ function parseCliArgs(argv: string[]): Args {
  *  the exit code and a test can drive this path without killing the test runner. */
 class ConfigError extends Error {}
 
+// Transitional: the token env was renamed DCWG_DISCORD_BOT_TOKEN ->
+// DODO_DISCORD_BOT_TOKEN in Nov 2026. The legacy name still answers until
+// the Zo secret and the workflow are renamed; remove once verified.
+const LEGACY_TOKEN_ENV = "DCWG_DISCORD_BOT_TOKEN";
+
 function requireToken(name: string): string {
-  const token = Deno.env.get(name);
+  const token = Deno.env.get(name) ??
+    (name === "DODO_DISCORD_BOT_TOKEN" ? Deno.env.get(LEGACY_TOKEN_ENV) : undefined);
   if (!token) {
     throw new ConfigError(
       `${name} is not set. This connector uses its own Discord application's bot\n` +
@@ -963,7 +969,7 @@ export async function main(argv: string[] = Deno.args): Promise<number> {
    * agent left behind: both are a non-zero exit with a dirty `wiki/`. So the process
    * that ran the gates is the one that says so, and it says it only here, after every
    * fold has either passed or been reverted. The marker is deleted before each venue
-   * runs and `.dcwg/` is never committed, so a run that dies before this line, and a
+   * runs and `.dodo/` is never committed, so a run that dies before this line, and a
    * run under `--no-gates`, authorise nothing.
    */
   await writePagesOk(root, !gatesSkipped);

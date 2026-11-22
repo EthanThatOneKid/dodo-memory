@@ -2,7 +2,7 @@
 "@type": schema:TechArticle
 schema:name: "Dodo's Identity and Economic Reality"
 schema:description: "A 2026-10-18 #propose thread discussing Dodo's identity as an embeddable runtime, its modular architecture, and economic models for funding maintainers, including challenges like JITless platforms and Node.js compatibility."
-wazoo:source: dcwg
+wazoo:source: dodo
 wazoo:thread: "1561488644219478176"
 wiki:priority: medium
 ---

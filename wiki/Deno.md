@@ -8,7 +8,7 @@ schema:sameAs:
   - https://github.com/denoland/deno
   - https://deno.com
   - https://deno.land
-wazoo:source: dcwg
+wazoo:source: dodo
 wiki:priority: high
 ---
 

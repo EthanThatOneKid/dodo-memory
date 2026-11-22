@@ -2,7 +2,7 @@
 "@type": schema:TechArticle
 schema:name: Dodo branding, namespaces, and website
 schema:description: How the group claimed JSR scopes, chose and hunted for a domain, designed the Dodo logo, and started the website between 2026-10-12 and 2026-10-23.
-wazoo:source: dcwg
+wazoo:source: dodo
 wiki:priority: low
 ---
 

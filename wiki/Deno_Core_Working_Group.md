@@ -8,13 +8,13 @@ schema:keywords:
   - governance
   - lts
   - community
-wazoo:source: dcwg
+wazoo:source: dodo
 wiki:priority: high
 ---
 
 # Deno Core Working Group
 
-An informal group of Deno users coordinating on Discord, with the working name "dcwg", to keep the Deno runtime alive and maintained after Deno Land Inc. stopped planning to develop it. It is not a foundation, has no published charter, and owns no repository.
+An informal group of Deno users coordinating on Discord, formerly with the working name "dcwg" and now called Dodo, to keep the Deno runtime alive and maintained after Deno Land Inc. stopped planning to develop it. It is not a foundation, has no published charter, and owns no repository.
 
 ## Origin
 

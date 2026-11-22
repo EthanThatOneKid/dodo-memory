@@ -2,7 +2,7 @@
 "@type": schema:TechArticle
 schema:name: Formalizing the community
 schema:description: "The 2026-11-19 #propose thread on giving the Deno Core Working Group a formal structure: Ethan's four options, lishaduck's OpenCollective counter, the Open Collective admin question, the question of whether to apply for Open Collective or wait, and the poll planned after Fri Nov 20, 5pm PT."
-wazoo:source: dcwg
+wazoo:source: dodo
 wazoo:thread: "1572787160032084020"
 wiki:priority: high
 ---

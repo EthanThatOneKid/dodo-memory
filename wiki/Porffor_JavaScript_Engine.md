@@ -2,7 +2,7 @@
 "@type": schema:TechArticle
 schema:name: "Porffor JavaScript Engine"
 schema:description: "Discussions on the Porffor JavaScript engine, including its potential use in Deno, its current limitations, and performance characteristics compared to traditional interpreters."
-wazoo:source: dcwg
+wazoo:source: dodo
 wiki:priority: medium
 ---
 

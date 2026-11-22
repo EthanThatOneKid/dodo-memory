@@ -2,7 +2,7 @@
 "@type": schema:TechArticle
 schema:name: Deno versus Node features
 schema:description: The 2026-10-16 #propose thread asking whether the group should keep developing Deno or push its best features into Node.js, and the argument that Deno is a developer-experience product rather than a feature checklist.
-wazoo:source: dcwg
+wazoo:source: dodo
 wazoo:thread: "1560790338480906290"
 wiki:priority: medium
 ---

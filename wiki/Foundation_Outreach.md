@@ -2,7 +2,7 @@
 "@type": schema:TechArticle
 schema:name: Foundation outreach and Bart's reply
 schema:description: The working group's contact with Deno's Bartek Iwańczuk from 2026-10-15 to 2026-10-28, what he said about a Deno foundation and about upstreaming fork changes, and how the group reacted, including whether Dodo should exist if a foundation does.
-wazoo:source: dcwg
+wazoo:source: dodo
 wiki:priority: high
 ---
 

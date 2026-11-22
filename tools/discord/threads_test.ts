@@ -22,7 +22,7 @@ const TEXT = "700";
 const FORUM_POST_1 = "2100";
 const FORUM_POST_2 = "2200";
 const TEXT_THREAD = "1700";
-const TOKEN_ENV = "DCWG_DISCORD_BOT_TOKEN";
+const TOKEN_ENV = "DODO_DISCORD_BOT_TOKEN";
 
 function msg(id: string, content: string, minute: number): DiscordMessage {
   return {
@@ -145,14 +145,14 @@ Deno.test("a forum run captures every post under its own heading", async () => {
       "--channel",
       FORUM,
       "--venue",
-      "dcwg-propose",
+      "dodo-propose",
       "--root",
       root,
       "--skip-wiki",
     ]);
     assertEquals(code, 0);
 
-    const capture = await Deno.readTextFile(`${root}/raw/discord/2026-08-01_dcwg-propose.md`);
+    const capture = await Deno.readTextFile(`${root}/raw/discord/2026-08-01_dodo-propose.md`);
     assert(capture.includes(`## Rust Academy? (thread ${FORUM_POST_1})`), "post heading");
     assert(capture.includes(`## Sustainability (thread ${FORUM_POST_2})`), "archived post heading");
     assert(
@@ -177,14 +177,14 @@ Deno.test("a text channel's thread is captured without dragging its own cursor p
       "--channel",
       TEXT,
       "--venue",
-      "dcwg-brainstorm",
+      "dodo-brainstorm",
       "--root",
       root,
       "--skip-wiki",
     ]);
     assertEquals(code, 0);
 
-    const capture = await Deno.readTextFile(`${root}/raw/discord/2026-08-01_dcwg-brainstorm.md`);
+    const capture = await Deno.readTextFile(`${root}/raw/discord/2026-08-01_dodo-brainstorm.md`);
     assert(capture.includes("top level one"), "the channel's own history is captured");
     assert(capture.includes(`## LLM Notetaking (thread ${TEXT_THREAD})`), "the thread is captured");
     assert(capture.includes("newer thread reply"), "a thread reply is captured");
@@ -208,7 +208,7 @@ Deno.test("a resumed run reads each thread from its own cursor and re-reads noth
   const api: Api = { messages: { ...MESSAGES, [TEXT_THREAD]: [...MESSAGES[TEXT_THREAD]] } };
   await withEnv(async () => {
     const root = await Deno.makeTempDir();
-    const argv = ["--channel", TEXT, "--venue", "dcwg-brainstorm", "--root", root, "--skip-wiki"];
+    const argv = ["--channel", TEXT, "--venue", "dodo-brainstorm", "--root", root, "--skip-wiki"];
 
     assertEquals((await runCli(argv)).code, 0);
 
@@ -224,7 +224,7 @@ Deno.test("a resumed run reads each thread from its own cursor and re-reads noth
     const third = await runCli(argv);
     assertEquals(third.code, 0);
 
-    const second = await Deno.readTextFile(`${root}/raw/discord/2026-08-01_dcwg-brainstorm-2.md`);
+    const second = await Deno.readTextFile(`${root}/raw/discord/2026-08-01_dodo-brainstorm-2.md`);
     assert(second.includes("another reply"), "the new reply is captured");
     assert(!second.includes("top level one"), "the channel's history is not re-captured");
     assert(!second.includes("thread starter"), "the thread's older messages are not re-captured");

@@ -2,7 +2,7 @@
 "@type": schema:TechArticle
 schema:name: Projects that depend on Deno
 schema:description: The list of GitHub repositories that depend on Deno, filtered by popularity, that w compiled on 2026-10-11 as potential allies, with the caveats the thread attached to it.
-wazoo:source: dcwg
+wazoo:source: dodo
 wiki:priority: low
 ---
 

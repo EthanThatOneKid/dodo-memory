@@ -14,7 +14,7 @@ import { validateSummary } from "./guard.ts";
 import type { DiscordMessage } from "./discord.ts";
 
 const CHANNEL = "1558888938842624093";
-const TOKEN_ENV = "DCWG_DISCORD_BOT_TOKEN";
+const TOKEN_ENV = "DODO_DISCORD_BOT_TOKEN";
 const KEY_ENV = "ANTHROPIC_API_KEY";
 
 /** Three messages, one of them a bot's, newest-first as Discord returns them. */
@@ -197,9 +197,9 @@ function exists(path: string): boolean {
   }
 }
 
-const BASE = ["--channel", CHANNEL, "--venue", "dcwg-talk", "--skip-wiki", "--all"];
+const BASE = ["--channel", CHANNEL, "--venue", "dodo-talk", "--skip-wiki", "--all"];
 /** The same run, but with the page pass left on, so the fold is attempted. */
-const FOLDING = ["--channel", CHANNEL, "--venue", "dcwg-talk", "--all", "--attempts", "1"];
+const FOLDING = ["--channel", CHANNEL, "--venue", "dodo-talk", "--all", "--attempts", "1"];
 
 /**
  * The minimum a fold needs to find.
@@ -230,7 +230,7 @@ const REPO_ROOT = fromFileUrl(new URL("../..", import.meta.url));
 async function seedPrompt(root: string): Promise<void> {
   const target = `${root}/tools/discord/prompt`;
   await Deno.mkdir(target, { recursive: true });
-  await Deno.copyFile(`${REPO_ROOT}/tools/discord/prompt/dcwg-pass.md`, `${target}/dcwg-pass.md`);
+  await Deno.copyFile(`${REPO_ROOT}/tools/discord/prompt/dodo-pass.md`, `${target}/dodo-pass.md`);
 }
 
 async function copyTree(from: string, to: string): Promise<void> {
@@ -269,9 +269,9 @@ Deno.test("one run writes an append-only capture, a cursor, and a contract-valid
     assertEquals(code, 0);
 
     const files = [...Deno.readDirSync(`${root}/raw/discord`)].map((e) => e.name).sort();
-    assertEquals(files, [".cursor", "2026-08-01_dcwg-talk.md", "SUMMARY.json"]);
+    assertEquals(files, [".cursor", "2026-08-01_dodo-talk.md", "SUMMARY.json"]);
 
-    const capture = await Deno.readTextFile(`${root}/raw/discord/2026-08-01_dcwg-talk.md`);
+    const capture = await Deno.readTextFile(`${root}/raw/discord/2026-08-01_dodo-talk.md`);
     assert(capture.includes('title: "Discord #talk — 2026-08-01"'), "frontmatter title");
     assert(
       capture.includes('source: "Discord REST API, channel ' + CHANNEL),
@@ -304,7 +304,7 @@ Deno.test("a second run the same day adds a capture instead of rewriting the fir
   await withEnv(async () => {
     const root = await Deno.makeTempDir();
     await runCli([...BASE, "--root", root]);
-    const firstPath = `${root}/raw/discord/2026-08-01_dcwg-talk.md`;
+    const firstPath = `${root}/raw/discord/2026-08-01_dodo-talk.md`;
     const before = await Deno.readTextFile(firstPath);
 
     const { code } = await runCli([...BASE, "--root", root]);
@@ -313,7 +313,7 @@ Deno.test("a second run the same day adds a capture instead of rewriting the fir
     const files = [...Deno.readDirSync(`${root}/raw/discord`)].map((e) => e.name).sort();
     assertEquals(
       files,
-      [".cursor", "2026-08-01_dcwg-talk-2.md", "2026-08-01_dcwg-talk.md", "SUMMARY.json"],
+      [".cursor", "2026-08-01_dodo-talk-2.md", "2026-08-01_dodo-talk.md", "SUMMARY.json"],
       "the second capture takes a suffix; the first is left alone",
     );
     assertEquals(
@@ -338,10 +338,10 @@ Deno.test("a capture the wiki has not folded is queued in the committed cursor f
     assertEquals(queued.length, 2, "one entry per capture committed");
     assertEquals(
       queued.map((fold: { capture: string }) => fold.capture),
-      ["raw/discord/2026-08-01_dcwg-talk.md", "raw/discord/2026-08-01_dcwg-talk-2.md"],
+      ["raw/discord/2026-08-01_dodo-talk.md", "raw/discord/2026-08-01_dodo-talk-2.md"],
       "oldest first, in the order the captures were written",
     );
-    assertEquals(queued[0].venue, "dcwg-talk");
+    assertEquals(queued[0].venue, "dodo-talk");
     assertEquals(queued[0].messages, 2, "the entry carries the capture's message count");
     assertEquals(queued[0].offset, 0, "nothing of it has been folded in yet");
   });
@@ -354,7 +354,7 @@ Deno.test("a failed page pass still commits the capture, the cursor, and a queue
     const { code, out } = await runCli([...FOLDING, "--root", root]);
     assertEquals(code, 1, "a stalled fold is a run that needs attention, not a silent success");
 
-    const capture = `${root}/raw/discord/2026-08-01_dcwg-talk.md`;
+    const capture = `${root}/raw/discord/2026-08-01_dodo-talk.md`;
     assert(
       (await Deno.readTextFile(capture)).includes("first message"),
       "the capture is on disk even though the fold failed",
@@ -369,8 +369,8 @@ Deno.test("a failed page pass still commits the capture, the cursor, and a queue
     assertEquals(
       cursor._pending,
       [{
-        capture: "raw/discord/2026-08-01_dcwg-talk.md",
-        venue: "dcwg-talk",
+        capture: "raw/discord/2026-08-01_dodo-talk.md",
+        venue: "dodo-talk",
         messages: 2,
         offset: 0,
         stalls: 1,
@@ -389,7 +389,7 @@ Deno.test("a failed page pass still commits the capture, the cursor, and a queue
     assertEquals(payload.captured, 2, "the run reports what it archived, not only what it folded");
     assertEquals(payload.folded, 0);
     assertEquals(payload.pending, 1);
-    assertEquals(payload.stalled, "raw/discord/2026-08-01_dcwg-talk.md");
+    assertEquals(payload.stalled, "raw/discord/2026-08-01_dodo-talk.md");
   });
 });
 
@@ -408,13 +408,13 @@ Deno.test("a queued capture is retried before anything newer, and stays queued",
 
     const result = second.out.find((line) => line.startsWith("RESULT "))!;
     const payload = JSON.parse(result.slice("RESULT ".length));
-    assertEquals(payload.stalled, "raw/discord/2026-08-01_dcwg-talk.md");
+    assertEquals(payload.stalled, "raw/discord/2026-08-01_dodo-talk.md");
     assertEquals(payload.pending, 2, "both captures are still owed");
 
     const cursor = JSON.parse(await Deno.readTextFile(`${root}/raw/discord/.cursor`));
     assertEquals(cursor._pending.length, 2);
-    assertEquals(cursor._pending[0].capture, "raw/discord/2026-08-01_dcwg-talk.md");
-    assertEquals(cursor._pending[1].capture, "raw/discord/2026-08-01_dcwg-talk-2.md");
+    assertEquals(cursor._pending[0].capture, "raw/discord/2026-08-01_dodo-talk.md");
+    assertEquals(cursor._pending[1].capture, "raw/discord/2026-08-01_dodo-talk-2.md");
   });
 });
 
@@ -453,7 +453,7 @@ Deno.test("a pass that changes no page keeps the capture queued instead of foldi
     assertEquals(payload.folded, 0, "nothing was folded");
     assertEquals(
       payload.noop,
-      "raw/discord/2026-08-01_dcwg-talk.md",
+      "raw/discord/2026-08-01_dodo-talk.md",
       "the report names the capture the pass wrote nothing for",
     );
     assert(
@@ -483,7 +483,7 @@ Deno.test("a pass with no API key names both variables instead of fetching anyth
       {
         [TOKEN_ENV]: "test-token-not-real",
         [KEY_ENV]: undefined,
-        DCWG_ANTHROPIC_API_KEY: undefined,
+        DODO_ANTHROPIC_API_KEY: undefined,
       },
       async () => {
         const root = await Deno.makeTempDir();
@@ -491,7 +491,7 @@ Deno.test("a pass with no API key names both variables instead of fetching anyth
         assertEquals(code, 2, "a missing key is configuration, not a fold to retry");
         assert(errors[0].includes("ANTHROPIC_API_KEY"));
         assert(
-          errors[0].includes("DCWG_ANTHROPIC_API_KEY"),
+          errors[0].includes("DODO_ANTHROPIC_API_KEY"),
           "the host's prefixed name is the other fix",
         );
         assertEquals(exists(`${root}/raw`), false, "nothing was fetched: the check runs first");
@@ -523,7 +523,7 @@ Deno.test("a gemini pass with no gemini key names that variable, not the Anthrop
       {
         [TOKEN_ENV]: "test-token-not-real",
         GEMINI_API_KEY: undefined,
-        DCWG_GEMINI_API_KEY: undefined,
+        DODO_GEMINI_API_KEY: undefined,
         [KEY_ENV]: "an-anthropic-key-is-not-a-gemini-key",
       },
       async () => {
@@ -554,7 +554,7 @@ Deno.test("a gemini pass reaches the Gemini API, and an empty plan is a no-op fo
           `the report names who answered: ${out.join(" | ")}`,
         );
         const payload = JSON.parse(out.find((line) => line.startsWith("RESULT "))!.slice("RESULT ".length));
-        assertEquals(payload.noop, "raw/discord/2026-08-01_dcwg-talk.md");
+        assertEquals(payload.noop, "raw/discord/2026-08-01_dodo-talk.md");
       },
     );
   } finally {
@@ -603,7 +603,7 @@ Deno.test("the CLI refuses a flag it cannot honour instead of ignoring it", asyn
   const cases: Array<[string[], string]> = [
     [["--bogus"], "unknown flag: --bogus"],
     [["--channel"], "--channel needs a value"],
-    [["--channel", CHANNEL, "--venue", "dcwg-talk", "--tag"], "--tag needs a value"],
+    [["--channel", CHANNEL, "--venue", "dodo-talk", "--tag"], "--tag needs a value"],
   ];
   for (const [argv, expected] of cases) {
     const errors: string[] = [];
@@ -653,10 +653,10 @@ Deno.test("--tag replaces the default tags instead of adding to them", async () 
     const { code } = await runCli([...BASE, "--root", root, "--tag", "fork"]);
     assertEquals(code, 0);
 
-    const capture = await Deno.readTextFile(`${root}/raw/discord/2026-08-01_dcwg-talk.md`);
+    const capture = await Deno.readTextFile(`${root}/raw/discord/2026-08-01_dodo-talk.md`);
     assert(capture.includes('- "fork"'), "the explicit tag is recorded");
     assert(
-      !capture.includes('- "dcwg"'),
+      !capture.includes('- "dodo"'),
       "the first explicit --tag replaces the defaults rather than adding to them",
     );
   });
@@ -672,7 +672,7 @@ Deno.test("small queued captures are folded in one pass, and --batch-chars 0 fol
     const batched = await runCli([...FOLDING, "--root", root]);
     const line = batched.out.find((entry) => entry.startsWith("batching "));
     assert(line, "two fresh small captures share a fold");
-    assert(line.includes("2026-08-01_dcwg-talk.md") && line.includes("2026-08-01_dcwg-talk-2.md"), line);
+    assert(line.includes("2026-08-01_dodo-talk.md") && line.includes("2026-08-01_dodo-talk-2.md"), line);
 
     const alone = await runCli([...FOLDING, "--batch-chars", "0", "--root", root]);
     assert(!alone.out.some((entry) => entry.startsWith("batching ")), "0 turns batching off");
@@ -684,7 +684,7 @@ Deno.test("--batch-chars must be a non-negative integer", async () => {
   const originalError = console.error;
   console.error = (...parts: unknown[]) => errors.push(parts.join(" "));
   try {
-    assertEquals(await main(["--channel", CHANNEL, "--venue", "dcwg-talk", "--batch-chars", "1.5"]), 2);
+    assertEquals(await main(["--channel", CHANNEL, "--venue", "dodo-talk", "--batch-chars", "1.5"]), 2);
   } finally {
     console.error = originalError;
   }

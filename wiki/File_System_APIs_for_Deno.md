@@ -2,7 +2,7 @@
 "@type": schema:TechArticle
 schema:name: "File System APIs for Deno"
 schema:description: "Discussions on potential file system APIs for Deno, comparing Origin Private File System (OPFS) with object storage and IndexedDB, considering portability, performance, and user experience."
-wazoo:source: dcwg
+wazoo:source: dodo
 wiki:priority: medium
 ---
 

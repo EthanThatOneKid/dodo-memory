@@ -37,13 +37,13 @@ Deno.test("diffTree is empty when nothing changed", async () => {
 });
 
 Deno.test("the scratch directories are outside the snapshot", async () => {
-  // `.dcwg` is the connector's scratch space and marker, and `_site` is build output. Both are
+  // `.dodo` is the connector's scratch space and marker, and `_site` is build output. Both are
   // written inside the repo root during a pass, so both have to be invisible to the
   // tree compare, or every pass would report them as files written outside wiki/.
   await withTempTree({ "wiki/A.md": "one" }, async (root) => {
     const before = await snapshotTree(root);
-    await Deno.mkdir(`${root}/.dcwg`, { recursive: true });
-    await Deno.writeTextFile(`${root}/.dcwg/brief.md`, "the brief");
+    await Deno.mkdir(`${root}/.dodo`, { recursive: true });
+    await Deno.writeTextFile(`${root}/.dodo/brief.md`, "the brief");
     await Deno.mkdir(`${root}/_site/dodo-memory`, { recursive: true });
     await Deno.writeTextFile(`${root}/_site/dodo-memory/index.html`, "built");
     assertEquals(diffTree(before, await snapshotTree(root)), []);

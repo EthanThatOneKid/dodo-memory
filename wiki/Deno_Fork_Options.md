@@ -2,7 +2,7 @@
 "@type": schema:TechArticle
 schema:name: Deno fork options and naming
 schema:description: The two-fork thesis, the naming candidates weighed on 2026-10-11 (Ende, dodo, endo, noend, Pteryx), and what the group agreed a fork must preserve.
-wazoo:source: dcwg
+wazoo:source: dodo
 wiki:priority: high
 ---
 

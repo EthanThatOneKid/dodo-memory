@@ -7,7 +7,7 @@ schema:author:
   schema:name: Paul Anthony Webb
 schema:sameAs:
   - https://blog.webb.page/WM-105
-wazoo:source: dcwg
+wazoo:source: dodo
 wiki:priority: high
 ---
 

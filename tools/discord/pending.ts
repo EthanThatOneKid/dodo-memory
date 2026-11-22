@@ -28,7 +28,7 @@
 
 /** A capture committed to `raw/` that the wiki has not fully absorbed. */
 export interface PendingFold {
-  /** Repo-relative path, e.g. `raw/discord/2026-10-11_dcwg-brainstorm.md`. */
+  /** Repo-relative path, e.g. `raw/discord/2026-10-11_dodo-brainstorm.md`. */
   capture: string;
   /** The venue that captured it, matching the workflow's `VENUES` slug. */
   venue: string;

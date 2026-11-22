@@ -2,7 +2,7 @@
 "@type": schema:TechArticle
 schema:name: Fresh framework migration
 schema:description: Fresh, Deno's full-stack web framework, moved out of the denoland GitHub organization into freshframework. The verified facts of that move, and which of them transfer to a runtime handoff.
-wazoo:source: dcwg
+wazoo:source: dodo
 wiki:priority: high
 ---
 

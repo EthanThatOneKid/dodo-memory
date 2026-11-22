@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1296.6 624" width="1296.6" height="624" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, Menlo, 'DejaVu Sans Mono', 'MS Gothic', ui-monospace, monospace">
-<title>The DCWG daily loop</title>
+<title>The Dodo daily loop</title>
 <style>
 .bg{fill:#fafafa}
 .card{fill:#ffffff;stroke:#ececec}
@@ -48,7 +48,7 @@
 .k-pink{stroke:#f27ab8}
 }</style>
 <rect class="bg" width="100%" height="100%"/>
-<text x="24" y="32" font-size="20" font-weight="650" class="f-ink">The DCWG daily loop</text>
+<text x="24" y="32" font-size="20" font-weight="650" class="f-ink">The Dodo daily loop</text>
 <rect class="card" x="8" y="52" width="1280.6" height="90" rx="10"/>
 <path d="M24 78L94 78" fill="none" stroke-linejoin="round" stroke-width="2.2" stroke-linecap="round" class="k-ink"/>
 <text x="106" y="83" font-size="15" text-anchor="start" class="f-ink">GitHub Actions code runs</text>

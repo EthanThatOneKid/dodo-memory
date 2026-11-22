@@ -2,7 +2,7 @@
 "@type": schema:TechArticle
 schema:name: Sustaining the fork
 schema:description: The 2026-10-12 #propose thread on how a fork gets funded and maintained past one volunteer, covering the cloud-hosting proposal, the foundation and sponsorship routes, which companies were named as prospects, and the self-hosted platform CaptainLach offered in the thread on 2026-11-08.
-wazoo:source: dcwg
+wazoo:source: dodo
 wazoo:thread: "1559236057663414383"
 wiki:priority: high
 ---

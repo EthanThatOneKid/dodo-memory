@@ -2,7 +2,7 @@
 "@type": schema:TechArticle
 schema:name: Deno Desktop and Laufey
 schema:description: The 2026-10-16 to 2026-10-31 discussion of Deno Desktop's webview layer Laufey, a contributor's open fixes, whether to switch to wry, the licensing and CLA question, a competing fork, and webview permissions.
-wazoo:source: dcwg
+wazoo:source: dodo
 wiki:priority: low
 ---
 

@@ -2,7 +2,7 @@
 "@type": schema:TechArticle
 schema:name: "Celld Runtime"
 schema:description: "An explanation of Celld as a lightweight, secure runtime for single-threaded JavaScript processors, its benefits for microservices, and its limited applications outside of backend environments."
-wazoo:source: dcwg
+wazoo:source: dodo
 wiki:priority: medium
 ---
 

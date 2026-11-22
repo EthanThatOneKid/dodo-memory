@@ -113,14 +113,14 @@ skip that channel's own older messages. A forum's channel id is never a resume
 point, so it never gets a cursor.
 `deno task --config tools/discord/deno.json invite <app-id>` prints the install
 URL for that bot, scoped to `View Channel` and `Read Message History` and locked
-to the DCWG server. Both tools ship with the connector because the invite is the
+to the Dodo server. Both tools ship with the connector because the invite is the
 one step that needs a human: Discord has no API that creates an application or a
 bot user, so the application is made in the portal and only the invite is
 mechanical.
 
 The connector has its own Discord application and its own bot token. In the
 repository it is the secret `DISCORD_BOT_TOKEN`; on this host it is read from
-`DCWG_DISCORD_BOT_TOKEN` in Zo secrets, because Zo secrets are account-wide and
+`DODO_DISCORD_BOT_TOKEN` in Zo secrets, because Zo secrets are account-wide and
 a bare `DISCORD_BOT_TOKEN` here belongs to another project's bot. It is a
 separate concern from every other project's bots: never point it at another
 project's token, and never widen its permissions past read access to the
@@ -153,11 +153,11 @@ the server was told the archive covered `#brainstorm` and `#propose` only). On 2
 moderator had given permission to archive all public channels, and on 2026-11-03 that the server's main
 moderator had confirmed it with him directly, because he had already assumed every public channel was
 being recorded. Both are Ethan's reports, not captures, so the repo cannot cite the exchange itself. The
-repository variable `DCWG_REQUIRE_ANNOTATION` set to exactly `false` drops the per-channel annotation
+repository variable `DODO_REQUIRE_ANNOTATION` set to exactly `false` drops the per-channel annotation
 requirement (public, readable, and non-excluded channels are then archived); unset, or any other value,
 keeps it. It is `false` since 2026-11-03. Pinned channels are reported, not
-enforced. The repository variable `DCWG_EXCLUDE_CHANNELS` (channel ids) leaves a public
-channel out and `DCWG_DISCOVER=false` turns discovery off. Discovery logs a skipped channel by id only,
+enforced. The repository variable `DODO_EXCLUDE_CHANNELS` (channel ids) leaves a public
+channel out and `DODO_DISCOVER=false` turns discovery off. Discovery logs a skipped channel by id only,
 never by name, because the Actions log is public and most skipped channels are private. To preview what
 a run would archive, dispatch the workflow with `discover_only`, which lists the venues and stops. Do
 not use `dry_run` for that: it prints each capture's text to the public log. A new channel is captured from its first
@@ -176,9 +176,9 @@ never waits on a key and the folds stay queued until one is added. The workflow 
 for the same reason: it first archives every venue with `--skip-wiki` and pushes each capture, cursor and
 queue entry, and only then folds the queue, so a fold that is rate limited, slow or killed cannot take a
 capture with it. Inference is the staged pass
-described below; the repository variables `DCWG_PROVIDER`, `DCWG_MODEL` and `DCWG_MAX_USD` repoint
-a manual fold's provider, model and spend cap without editing the workflow. `DCWG_MODEL` names a
-model for one provider, so change it together with `DCWG_PROVIDER`.
+described below; the repository variables `DODO_PROVIDER`, `DODO_MODEL` and `DODO_MAX_USD` repoint
+a manual fold's provider, model and spend cap without editing the workflow. `DODO_MODEL` names a
+model for one provider, so change it together with `DODO_PROVIDER`.
 
 If the pass or a gate fails, the page edits are reverted, so a bad inference never
 commits prose that does not pass the repo's own checks. The capture is committed
@@ -277,7 +277,7 @@ carry the data and forced tool use is never used, because Claude Opus 5.5 return
 `tool_choice` `any`/`tool`.
 
 Spend is bounded by the pass itself: `--max-usd` (default $2, repository variable
-`DCWG_MAX_USD` for the schedule) against a cost estimated from the usage the API reports,
+`DODO_MAX_USD` for the schedule) against a cost estimated from the usage the API reports,
 and a token ceiling for a model with no listed price. It is checked before every call, and
 a pass over its cap stops and fails the attempt, which reverts. The default model is
 `claude-opus-5-5`; `--model claude-sonnet-5-5` or `claude-haiku-5-5` are cheaper and priced
@@ -290,9 +290,9 @@ providers: the plan, the page writes, the gates and the queue are the same code,
 asks for structured data through one `Complete` function (`model.ts`) that each provider implements.
 
 - **`anthropic`** (the default) uses `ANTHROPIC_API_KEY` (the workflow's repository secret;
-  `DCWG_ANTHROPIC_API_KEY` on the Zo host). It is a Console API key billed per token. A Claude chat
+  `DODO_ANTHROPIC_API_KEY` on the Zo host). It is a Console API key billed per token. A Claude chat
   subscription does not pay for API calls, and a subscription token is not used here.
-- **`gemini`** (`gemini.ts`) uses `GEMINI_API_KEY` (`DCWG_GEMINI_API_KEY` on the host), a Google AI
+- **`gemini`** (`gemini.ts`) uses `GEMINI_API_KEY` (`DODO_GEMINI_API_KEY` on the host), a Google AI
   Studio key, and defaults to `gemini-2.5-flash`. It speaks the native `generateContent` API with a
   response schema, not the OpenAI-compatible endpoint that needed a shim, and it retries a 429 or 5xx
   itself, waiting the delay the API names. A wait over 60 seconds (a daily quota) fails the call as a
@@ -303,7 +303,7 @@ asks for structured data through one `Complete` function (`model.ts`) that each 
 
 The key is never borrowed across providers: a Gemini run with only `ANTHROPIC_API_KEY` set fails
 naming `GEMINI_API_KEY`. The standing instructions are
-`tools/discord/prompt/dcwg-pass.md`, written for the staged pass: it says the model returns
+`tools/discord/prompt/dodo-pass.md`, written for the staged pass: it says the model returns
 data and never touches a file.
 
 Not yet verified live: the unit tests drive the stages against a stubbed model, and nothing

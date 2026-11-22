@@ -14,7 +14,7 @@ import { main } from "./ingest.ts";
 import type { DiscordMessage } from "./discord.ts";
 
 const CHANNEL = "1558888938842624093";
-const TOKEN_ENV = "DCWG_DISCORD_BOT_TOKEN";
+const TOKEN_ENV = "DODO_DISCORD_BOT_TOKEN";
 
 function message(id: string, timestamp: string): DiscordMessage {
   return {
@@ -58,7 +58,7 @@ Deno.test("a run with no cursor starts at the channel's first message", async ()
   const originalLog = console.log;
   console.log = () => {};
   try {
-    await main(["--channel", CHANNEL, "--venue", "dcwg-talk", "--skip-wiki", "--root", root]);
+    await main(["--channel", CHANNEL, "--venue", "dodo-talk", "--skip-wiki", "--root", root]);
   } finally {
     console.log = originalLog;
     restore();

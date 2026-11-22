@@ -2,7 +2,7 @@
 "@type": schema:TechArticle
 schema:name: Dodo project roadmap
 schema:description: The now, near and far roadmap that daniellacosse posted to #roadmap on 2026-10-16 and last edited on 2026-10-28, with its owners, its out-of-scope list, and the triage board.
-wazoo:source: dcwg
+wazoo:source: dodo
 wiki:priority: high
 ---
 

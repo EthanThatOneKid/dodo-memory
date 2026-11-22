@@ -2,7 +2,7 @@
 "@type": schema:TechArticle
 schema:name: "WebGPU and LLM Performance"
 schema:description: "Claims and discussions about using WebGPU compute shaders for iOS performance and running LLMs, including challenges and architectural suggestions."
-wazoo:source: dcwg
+wazoo:source: dodo
 wiki:priority: medium
 ---
 

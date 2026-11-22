@@ -2,7 +2,7 @@
 "@type": schema:TechArticle
 schema:name: "Deno JavaScriptCore Compatibility"
 schema:description: "CaptainLach reported that Deno works perfectly fine with JavaScriptCore, based on manual checks."
-wazoo:source: dcwg
+wazoo:source: dodo
 wiki:priority: medium
 ---
 

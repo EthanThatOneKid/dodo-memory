@@ -11,4 +11,4 @@ secrets/
 .ruff_cache/
 
 # The wiki pass: the connector's scratch space and gate marker
-.dcwg/
+.dodo/

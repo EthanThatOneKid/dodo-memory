@@ -14,7 +14,7 @@
  */
 import { assert, assertStringIncludes } from "@std/assert";
 
-const PASS_PROMPT = await Deno.readTextFile(new URL("./prompt/dcwg-pass.md", import.meta.url));
+const PASS_PROMPT = await Deno.readTextFile(new URL("./prompt/dodo-pass.md", import.meta.url));
 
 const FORBIDS_MD_LINKS = "Never write a markdown link whose target ends in";
 

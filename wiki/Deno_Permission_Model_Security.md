@@ -2,7 +2,7 @@
 "@type": schema:TechArticle
 schema:name: Deno permission-model security
 schema:description: The 2026-11-08 #general thread in which Summer argued Deno's permission flags carry undocumented footguns, SpaceMonkey answered with a kernel-enforcement plan for his Denext fork of Deno, and Summer pointed to three upstream Deno issues.
-wazoo:source: dcwg
+wazoo:source: dodo
 wiki:priority: medium
 ---
 

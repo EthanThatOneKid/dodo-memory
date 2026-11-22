@@ -1,6 +1,6 @@
 # dodo-memory
 
-Public memory repo for the Deno Core Working Group (DCWG): the community effort
+Public memory repo for Dodo (formerly the Deno Core Working Group): the community effort
 to carry the Deno runtime forward after Cloudflare acquired Deno Land Inc. on
 2026-10-09 and Deno announced it would end its own runtime development.
 
@@ -42,7 +42,7 @@ Two pieces, deliberately split so the record never waits on a model:
 `DAILY_CRON.md` is the runbook: the verification commands, what to do when a run
 fails, and the cleanup that waits until the loop has run green once.
 
-![The DCWG daily loop. At 11:00 UTC GitHub Actions pulls new Discord messages from public channels and pushes the captures and fold queue to main, where they are public and append-only; a push conflict discards the run and the next run re-fetches. About 6.5 hours later Muse folds the queued captures into wiki/, or stops if nothing is queued. The six gates either fail, reverting the wiki edits and keeping the queue, or pass to an approval card; once Ethan approves, one commit lands the wiki edits and cleared queue, and the Pages site deploys.](docs/diagrams/daily-loop.svg)
+![The Dodo daily loop. At 11:00 UTC GitHub Actions pulls new Discord messages from public channels and pushes the captures and fold queue to main, where they are public and append-only; a push conflict discards the run and the next run re-fetches. About 6.5 hours later Muse folds the queued captures into wiki/, or stops if nothing is queued. The six gates either fail, reverting the wiki edits and keeping the queue, or pass to an approval card; once Ethan approves, one commit lands the wiki edits and cleared queue, and the Pages site deploys.](docs/diagrams/daily-loop.svg)
 
 Time runs left to right; the stroke shows who is acting. The red diamond is the
 step that cannot be taken back: once a capture is pushed it is public and
@@ -129,7 +129,7 @@ rewritten or a page that links nowhere fails before it reaches the site.
 
 ## Provenance
 
-Every wiki page carries `wazoo:source: dcwg`. Pages that restate a Discord claim
+Every wiki page carries `wazoo:source: dodo`. Pages that restate a Discord claim
 name the participant who made it; pages that restate a published fact carry a
 footnote citation. Numbers in `wiki/Deno.md` and `wiki/Fresh_Framework_Migration.md`
 were read from live APIs on 2026-10-11 and are dated so that a stale figure is

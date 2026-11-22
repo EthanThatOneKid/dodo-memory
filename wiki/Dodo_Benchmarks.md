@@ -2,7 +2,7 @@
 "@type": schema:TechArticle
 schema:name: Benchmarking dodo
 schema:description: The 2026-10-13 #propose thread on getting performance baselines for dodo, the CI benchmark harness and its noise threshold, and whether modularizing the build loses the LTO benefits Deno gets today.
-wazoo:source: dcwg
+wazoo:source: dodo
 wazoo:thread: "1559657749892300934"
 wiki:priority: high
 ---

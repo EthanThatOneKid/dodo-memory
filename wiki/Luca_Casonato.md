@@ -8,7 +8,7 @@ schema:worksFor:
 schema:sameAs:
   - https://github.com/lucacasonato
   - https://lcas.dev
-wazoo:source: dcwg
+wazoo:source: dodo
 wiki:priority: medium
 ---
 

@@ -2,7 +2,7 @@
 "@type": schema:TechArticle
 schema:name: "Deno Deploy Architecture"
 schema:description: "An analysis of Deno Deploy's architecture, including historical insights, current operating mechanisms, and discussions on resource usage and feasibility of replication."
-wazoo:source: dcwg
+wazoo:source: dodo
 wiki:priority: medium
 ---
 

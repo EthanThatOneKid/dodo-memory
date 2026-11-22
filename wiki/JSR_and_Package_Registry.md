@@ -2,7 +2,7 @@
 "@type": schema:TechArticle
 schema:name: JSR and the package registry
 schema:description: What the 2026-10-16 to 2026-10-21 #ende discussion recorded about JSR's rate limits, publishing quotas and stuck packages, whether Dodo should run its own registry, and who owns the standard library.
-wazoo:source: dcwg
+wazoo:source: dodo
 wiki:priority: medium
 ---
 

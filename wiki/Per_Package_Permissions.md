@@ -2,7 +2,7 @@
 "@type": schema:TechArticle
 schema:name: Per-package (module-level) permissions
 schema:description: The 2026-10-21 #propose thread in which Varad proposed per-package permission manifests, andy and Matthew objected that modules share one context, and davey and daniellacosse later asked whether separate contexts could make it work, before the conversation moved to the extension-boundary thread; plus a 2026-11-11 #general sketch of an IPC extension runtime.
-wazoo:source: dcwg
+wazoo:source: dodo
 wazoo:thread: "1562324423615184897"
 wiki:priority: medium
 ---

@@ -2,7 +2,7 @@
 "@type": schema:TechArticle
 schema:name: Sandboxed extension boundary
 schema:description: The 2026-10-22 to 2026-10-25 #propose thread on whether extensions can be sandboxed per extension, the WASI-isolate and separate-isolate designs, why andy holds extensions to be fully trusted, the embeddability and iOS motivation, and CaptainLach's per-package runtime-object alternative.
-wazoo:source: dcwg
+wazoo:source: dodo
 wazoo:thread: "1562944037135196211"
 wiki:priority: high
 ---

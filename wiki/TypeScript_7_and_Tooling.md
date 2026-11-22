@@ -2,7 +2,7 @@
 "@type": schema:TechArticle
 schema:name: TypeScript 7 and type-aware tooling
 schema:description: The 2026-10-17 to 2026-11-07 discussion of how a Deno fork keeps up with TypeScript 7, the Rust port tsrs, and what type-aware linting needs, and why TypeScript upgrades fall outside Deno's promised maintenance.
-wazoo:source: dcwg
+wazoo:source: dodo
 wiki:priority: low
 ---
 

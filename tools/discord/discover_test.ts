@@ -56,7 +56,7 @@ function discover(
 
 Deno.test("a channel @everyone can read is discovered", () => {
   const found = discover([channel("1", "General")], [everyoneRole(READ)]);
-  assertEquals(found.venues, [{ venue: "dcwg-general", channel: "1" }]);
+  assertEquals(found.venues, [{ venue: "dodo-general", channel: "1" }]);
 });
 
 Deno.test("a channel whose @everyone overwrite denies viewing is not discovered", () => {
@@ -149,12 +149,12 @@ Deno.test("pinned venues keep their names, come first, and are not rediscovered"
   const found = discover(
     [channel("1", "Brainstorm"), channel("2", "propose"), channel("3", "talk")],
     [everyoneRole(READ)],
-    { pinned: [{ venue: "dcwg-brainstorm", channel: "1" }, { venue: "dcwg-propose", channel: "2" }] },
+    { pinned: [{ venue: "dodo-brainstorm", channel: "1" }, { venue: "dodo-propose", channel: "2" }] },
   );
   assertEquals(found.venues, [
-    { venue: "dcwg-brainstorm", channel: "1" },
-    { venue: "dcwg-propose", channel: "2" },
-    { venue: "dcwg-talk", channel: "3" },
+    { venue: "dodo-brainstorm", channel: "1" },
+    { venue: "dodo-propose", channel: "2" },
+    { venue: "dodo-talk", channel: "3" },
   ]);
 });
 
@@ -162,9 +162,9 @@ Deno.test("a pinned venue is kept even when the channel would not be discovered"
   const found = discover(
     [channel("1", "private", { permission_overwrites: [deny(GUILD, VIEW_CHANNEL)] })],
     [everyoneRole(READ)],
-    { pinned: [{ venue: "dcwg-private", channel: "1" }] },
+    { pinned: [{ venue: "dodo-private", channel: "1" }] },
   );
-  assertEquals(found.venues, [{ venue: "dcwg-private", channel: "1" }]);
+  assertEquals(found.venues, [{ venue: "dodo-private", channel: "1" }]);
 });
 
 Deno.test("an excluded channel is skipped", () => {
@@ -176,13 +176,13 @@ Deno.test("an excluded channel is skipped", () => {
 
 Deno.test("two channels with the same name get different venue names", () => {
   const found = discover([channel("111111", "chat"), channel("222222", "Chat!")], [everyoneRole(READ)]);
-  assertEquals(found.venues.map((v) => v.venue), ["dcwg-chat", "dcwg-chat-222222"]);
+  assertEquals(found.venues.map((v) => v.venue), ["dodo-chat", "dodo-chat-222222"]);
 });
 
 Deno.test("a name with nothing usable in it falls back to the channel id", () => {
   assertEquals(slugify("💡"), "");
-  assertEquals(venueName("💡", "123", new Set()), "dcwg-123");
-  assertEquals(venueName("💡-ideas", "123", new Set()), "dcwg-ideas");
+  assertEquals(venueName("💡", "123", new Set()), "dodo-123");
+  assertEquals(venueName("💡-ideas", "123", new Set()), "dodo-ideas");
 });
 
 Deno.test("venues and ids parse from the formats the workflow passes", () => {
@@ -241,9 +241,9 @@ Deno.test("a non-public channel is skipped for being non-public even when it car
 Deno.test("a pinned venue is kept without the annotation, and its status is reported", () => {
   const channels = [channel("1", "plain", { topic: "hello" }), channel("2", "marked"), channel("3", "gone")];
   const pinned = [
-    { venue: "dcwg-plain", channel: "1" },
-    { venue: "dcwg-marked", channel: "2" },
-    { venue: "dcwg-missing", channel: "99" },
+    { venue: "dodo-plain", channel: "1" },
+    { venue: "dodo-marked", channel: "2" },
+    { venue: "dodo-missing", channel: "99" },
   ];
   const found = discover(channels.slice(0, 2), [everyoneRole(READ)], { pinned });
   assertEquals(found.venues.map((v) => v.channel), ["1", "2", "99"]);

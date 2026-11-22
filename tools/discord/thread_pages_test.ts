@@ -60,19 +60,19 @@ Deno.test("threadAnchors reads frontmatter only, and keeps a snowflake exact", (
 
 Deno.test("a forum post with no page is reported, naming the capture and the post", async () => {
   const root = await tree({
-    "raw/discord/2026-10-16_dcwg-propose.md": capture("forum", [["20", "Rust Academy?"]]),
+    "raw/discord/2026-10-16_dodo-propose.md": capture("forum", [["20", "Rust Academy?"]]),
     "wiki/Deno.md": page("Deno", []),
   });
   const problems = await findThreadProblems(root);
   assertEquals(problems.length, 1);
-  assert(problems[0].includes("2026-10-16_dcwg-propose.md"), problems[0]);
+  assert(problems[0].includes("2026-10-16_dodo-propose.md"), problems[0]);
   assert(problems[0].includes("thread 20"), problems[0]);
   assert(problems[0].includes("Rust Academy?"), problems[0]);
 });
 
 Deno.test("a forum post with a page of its own passes", async () => {
   const root = await tree({
-    "raw/discord/2026-10-16_dcwg-propose.md": capture("forum", [["20", "Rust Academy?"]]),
+    "raw/discord/2026-10-16_dodo-propose.md": capture("forum", [["20", "Rust Academy?"]]),
     "wiki/Rust_Academy.md": page("Rust Academy", ["20"]),
   });
   assertEquals(await findThreadProblems(root), []);
@@ -80,7 +80,7 @@ Deno.test("a forum post with a page of its own passes", async () => {
 
 Deno.test("a text channel's threads are not required to have pages of their own", async () => {
   const root = await tree({
-    "raw/discord/2026-10-16_dcwg-brainstorm.md": capture("text", [["30", "side discussion"]]),
+    "raw/discord/2026-10-16_dodo-brainstorm.md": capture("text", [["30", "side discussion"]]),
     "wiki/Deno.md": page("Deno", []),
   });
   assertEquals(await findForumThreads(root), []);
@@ -89,7 +89,7 @@ Deno.test("a text channel's threads are not required to have pages of their own"
 
 Deno.test("a page holding two posts is reported, because that is the aggregation", async () => {
   const root = await tree({
-    "raw/discord/2026-10-16_dcwg-propose.md": capture("forum", [
+    "raw/discord/2026-10-16_dodo-propose.md": capture("forum", [
       ["20", "Rust Academy?"],
       ["21", "Sustainability idea"],
     ]),
@@ -103,7 +103,7 @@ Deno.test("a page holding two posts is reported, because that is the aggregation
 
 Deno.test("a media channel is post-shaped too, and no captures means nothing to check", async () => {
   const root = await tree({
-    "raw/discord/2026-10-16_dcwg-clips.md": capture("media", [["40", "a clip"]]),
+    "raw/discord/2026-10-16_dodo-clips.md": capture("media", [["40", "a clip"]]),
   });
   assertEquals((await findForumThreads(root)).map((thread) => thread.id), ["40"]);
 
@@ -113,10 +113,10 @@ Deno.test("a media channel is post-shaped too, and no captures means nothing to 
 
 Deno.test("posts in captures still queued behind a fold are not owed a page yet", async () => {
   const root = await tree({
-    "raw/discord/2026-10-16_dcwg-propose.md": capture("forum", [["20", "Rust Academy?"]]),
-    "raw/discord/2026-10-17_dcwg-propose.md": capture("forum", [["21", "Killer app"]]),
+    "raw/discord/2026-10-16_dodo-propose.md": capture("forum", [["20", "Rust Academy?"]]),
+    "raw/discord/2026-10-17_dodo-propose.md": capture("forum", [["21", "Killer app"]]),
     "wiki/Rust_Academy.md": page("Rust Academy", ["20"]),
   });
   assertEquals((await findThreadProblems(root)).length, 1);
-  assertEquals(await findThreadProblems(root, new Set(["raw/discord/2026-10-17_dcwg-propose.md"])), []);
+  assertEquals(await findThreadProblems(root, new Set(["raw/discord/2026-10-17_dodo-propose.md"])), []);
 });

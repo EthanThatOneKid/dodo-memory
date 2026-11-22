@@ -47,7 +47,7 @@ export { emptyUsage };
 export type { CallRequest, Complete, Effort, FailureKind, Reply, Usage };
 
 /** The standing instructions for this pass, relative to the repo root. */
-export const PASS_INSTRUCTIONS_PATH = "tools/discord/prompt/dcwg-pass.md";
+export const PASS_INSTRUCTIONS_PATH = "tools/discord/prompt/dodo-pass.md";
 
 /**
  * Read the standing instructions. Throws rather than defaulting: a pass with no rules
@@ -801,7 +801,7 @@ export function composePage(
       `"@type": ${out.type}`,
       `schema:name: ${yamlStr(out.name.trim())}`,
       `schema:description: ${yamlStr(out.description.replace(/\s+/g, " ").trim())}`,
-      "wazoo:source: dcwg",
+      "wazoo:source: dodo",
       ...(op.thread_id ? [`wazoo:thread: ${yamlStr(op.thread_id)}`] : []),
       "wiki:priority: medium",
       "---",

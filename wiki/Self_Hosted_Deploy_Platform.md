@@ -2,7 +2,7 @@
 "@type": schema:TechArticle
 schema:name: Self-hosted deploy platform
 schema:description: CaptainLach's standalone, self-hosted implementation of a Deno Deploy-style platform, as described in #sandboxo on 2026-10-22 to 2026-11-09, in #ende on 2026-10-20, and in #propose on 2026-11-08, with the naming ideas and what is not yet public.
-wazoo:source: dcwg
+wazoo:source: dodo
 wiki:priority: low
 ---
 

@@ -286,7 +286,7 @@ function stub(
 }
 
 const task = {
-  capturePath: "raw/discord/2026-10-12_dcwg-propose.md",
+  capturePath: "raw/discord/2026-10-12_dodo-propose.md",
   channelName: "propose",
   messageCount: 2,
   forum: true,

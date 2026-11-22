@@ -2,7 +2,7 @@
 "@type": schema:TechArticle
 schema:name: Rust core rewrite proposal
 schema:description: The 2026-10-12 #propose thread formalizing a minimal Rust loader core with TypeScript extensions, the Zig prototype and dodo-x repository it produced, and the bindings work that followed.
-wazoo:source: dcwg
+wazoo:source: dodo
 wazoo:thread: "1559219836297547847"
 wiki:priority: high
 ---

@@ -8,7 +8,7 @@
  */
 
 /** Directories the snapshot ignores: version control, tool state, build output. */
-const IGNORED_DIRS = [".git", ".dcwg", "_site", "node_modules"];
+const IGNORED_DIRS = [".git", ".dodo", "_site", "node_modules"];
 
 export interface FileTree {
   /** Repo-relative path -> file content. Text only; this repo is all text. */
@@ -86,11 +86,11 @@ export function outsideWiki(changed: string[]): string[] {
 /**
  * The marker that tells the workflow `wiki/` is safe to commit.
  *
- * It lives under `.dcwg/` precisely because that path is gitignored and never staged,
+ * It lives under `.dodo/` precisely because that path is gitignored and never staged,
  * and the workflow deletes the directory before each venue runs, so one venue's marker
  * cannot authorise the next venue's crash.
  */
-export const PAGES_OK_PATH = ".dcwg/pages-ok";
+export const PAGES_OK_PATH = ".dodo/pages-ok";
 
 /**
  * Record whether every page edit currently on disk passed the gates.
@@ -109,6 +109,6 @@ export async function writePagesOk(root: string, ok: boolean): Promise<void> {
     }
     return;
   }
-  await Deno.mkdir(`${root}/.dcwg`, { recursive: true });
+  await Deno.mkdir(`${root}/.dodo`, { recursive: true });
   await Deno.writeTextFile(path, `${new Date().toISOString()}\n`);
 }

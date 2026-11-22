@@ -11,10 +11,10 @@ import { assert, assertEquals } from "@std/assert";
 import { advance, drop, enqueue, PENDING_KEY, pendingFor, readPending, setPending, stall } from "./pending.ts";
 import type { PendingFold } from "./pending.ts";
 
-const CAPTURE = "raw/discord/2026-10-11_dcwg-brainstorm.md";
+const CAPTURE = "raw/discord/2026-10-11_dodo-brainstorm.md";
 
 function fold(over: Partial<PendingFold> = {}): PendingFold {
-  return { capture: CAPTURE, venue: "dcwg-brainstorm", messages: 3, offset: 0, stalls: 0, ...over };
+  return { capture: CAPTURE, venue: "dodo-brainstorm", messages: 3, offset: 0, stalls: 0, ...over };
 }
 
 Deno.test("readPending survives whatever the cursor file holds", () => {
@@ -28,19 +28,19 @@ Deno.test("readPending survives whatever the cursor file holds", () => {
 
 Deno.test("readPending keeps a well-formed entry and defaults its numbers", () => {
   const folds = readPending({
-    [PENDING_KEY]: [{ capture: CAPTURE, venue: "dcwg-brainstorm" }, {
-      capture: "raw/discord/2026-10-12_dcwg-propose.md",
-      venue: "dcwg-propose",
+    [PENDING_KEY]: [{ capture: CAPTURE, venue: "dodo-brainstorm" }, {
+      capture: "raw/discord/2026-10-12_dodo-propose.md",
+      venue: "dodo-propose",
       messages: -4,
       offset: 1.5,
       stalls: -2,
     }],
   });
   assertEquals(folds, [
-    { capture: CAPTURE, venue: "dcwg-brainstorm", messages: 0, offset: 0, stalls: 0 },
+    { capture: CAPTURE, venue: "dodo-brainstorm", messages: 0, offset: 0, stalls: 0 },
     {
-      capture: "raw/discord/2026-10-12_dcwg-propose.md",
-      venue: "dcwg-propose",
+      capture: "raw/discord/2026-10-12_dodo-propose.md",
+      venue: "dodo-propose",
       messages: 0,
       offset: 0,
       stalls: 0,
@@ -49,7 +49,7 @@ Deno.test("readPending keeps a well-formed entry and defaults its numbers", () =
 });
 
 Deno.test("enqueue appends once and never duplicates a capture", () => {
-  const request = { capture: CAPTURE, venue: "dcwg-brainstorm", messages: 3 };
+  const request = { capture: CAPTURE, venue: "dodo-brainstorm", messages: 3 };
   const once = enqueue([], request);
   assertEquals(once, [fold()]);
   assertEquals(
@@ -60,22 +60,22 @@ Deno.test("enqueue appends once and never duplicates a capture", () => {
 });
 
 Deno.test("a venue drains only its own captures, oldest first", () => {
-  const other = fold({ capture: "raw/discord/2026-10-12_dcwg-propose.md", venue: "dcwg-propose" });
+  const other = fold({ capture: "raw/discord/2026-10-12_dodo-propose.md", venue: "dodo-propose" });
   const folds = enqueue(
-    enqueue([other], { capture: CAPTURE, venue: "dcwg-brainstorm", messages: 3 }),
+    enqueue([other], { capture: CAPTURE, venue: "dodo-brainstorm", messages: 3 }),
     {
-      capture: "raw/discord/2026-10-13_dcwg-brainstorm.md",
-      venue: "dcwg-brainstorm",
+      capture: "raw/discord/2026-10-13_dodo-brainstorm.md",
+      venue: "dodo-brainstorm",
       messages: 5,
     },
   );
   assertEquals(
-    pendingFor(folds, "dcwg-brainstorm").map((f) => f.capture),
-    [CAPTURE, "raw/discord/2026-10-13_dcwg-brainstorm.md"],
+    pendingFor(folds, "dodo-brainstorm").map((f) => f.capture),
+    [CAPTURE, "raw/discord/2026-10-13_dodo-brainstorm.md"],
     "a venue removed from the workflow leaves its entries for that venue, not for whichever runs next",
   );
-  assertEquals(pendingFor(folds, "dcwg-propose").length, 1);
-  assertEquals(pendingFor(folds, "dcwg-talk").length, 0);
+  assertEquals(pendingFor(folds, "dodo-propose").length, 1);
+  assertEquals(pendingFor(folds, "dodo-talk").length, 0);
 });
 
 Deno.test("advance moves an offset forward and never backwards", () => {
@@ -96,7 +96,7 @@ Deno.test("advance retires an entry once the capture is fully absorbed", () => {
     "a capture that fits in one prompt leaves the queue behind it",
   );
   assertEquals(
-    advance([fold()], "raw/discord/2026-10-12_dcwg-propose.md", 5_000, 5_000).length,
+    advance([fold()], "raw/discord/2026-10-12_dodo-propose.md", 5_000, 5_000).length,
     1,
     "advancing one capture leaves the others alone",
   );
@@ -105,16 +105,16 @@ Deno.test("advance retires an entry once the capture is fully absorbed", () => {
 Deno.test("stall counts a run that could not fold a capture, and moves nothing else", () => {
   const started = [
     fold({ offset: 900 }),
-    fold({ capture: "raw/discord/2026-10-12_dcwg-propose.md" }),
+    fold({ capture: "raw/discord/2026-10-12_dodo-propose.md" }),
   ];
   const stalled = stall(started, CAPTURE);
   assertEquals(stalled, [
     fold({ offset: 900, stalls: 1 }),
-    fold({ capture: "raw/discord/2026-10-12_dcwg-propose.md" }),
+    fold({ capture: "raw/discord/2026-10-12_dodo-propose.md" }),
   ], "the entry keeps its offset and its place; only the count moves");
   assertEquals(stall(stalled, CAPTURE)[0].stalls, 2, "consecutive runs accumulate");
   assertEquals(
-    stall(stalled, "raw/discord/2026-10-13_dcwg-brainstorm.md"),
+    stall(stalled, "raw/discord/2026-10-13_dodo-brainstorm.md"),
     stalled,
     "a capture the queue does not hold is not invented by counting it",
   );
@@ -130,11 +130,11 @@ Deno.test("a fold that reached the gates clears the stall count", () => {
 });
 
 Deno.test("drop forgets a capture that is no longer on disk", () => {
-  const folds = [fold(), fold({ capture: "raw/discord/2026-10-12_dcwg-brainstorm.md" })];
+  const folds = [fold(), fold({ capture: "raw/discord/2026-10-12_dodo-brainstorm.md" })];
   assertEquals(drop(folds, CAPTURE).map((f) => f.capture), [
-    "raw/discord/2026-10-12_dcwg-brainstorm.md",
+    "raw/discord/2026-10-12_dodo-brainstorm.md",
   ]);
-  assertEquals(drop(folds, "raw/discord/2026-10-13_dcwg-brainstorm.md"), folds);
+  assertEquals(drop(folds, "raw/discord/2026-10-13_dodo-brainstorm.md"), folds);
 });
 
 Deno.test("setPending leaves no empty queue key behind", () => {
@@ -151,7 +151,7 @@ Deno.test("setPending leaves no empty queue key behind", () => {
 Deno.test("the queue round-trips through the cursor file's JSON", () => {
   const queue = [
     fold({ offset: 2_100 }),
-    fold({ capture: "raw/discord/2026-10-12_dcwg-brainstorm.md" }),
+    fold({ capture: "raw/discord/2026-10-12_dodo-brainstorm.md" }),
   ];
   const store: Record<string, unknown> = { "1234": "9999" };
   setPending(store, queue);

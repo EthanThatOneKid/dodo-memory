@@ -76,8 +76,9 @@ export function resolveProvider(name: ProviderName | undefined): ProviderSpec {
 /**
  * Find a provider's key in the environment, and say which variable answered.
  *
- * The canonical name is tried first and the host's account-wide `DCWG_`-prefixed name
- * second, mirroring how the capture bot's token resolves: Zo secrets are account-wide, so a
+ * The canonical name is tried first, the host's account-wide `DODO_`-prefixed name
+ * second, and the legacy `DCWG_`-prefixed name third (transitional: remove once the
+ * Zo secret is renamed), mirroring how the capture bot's token resolves: Zo secrets are account-wide, so a
  * bare `ANTHROPIC_API_KEY` on this host may belong to another project, and the workflow
  * uses the bare name because repository secrets are already scoped.
  */
@@ -85,7 +86,7 @@ export function resolveApiKey(
   spec: ProviderSpec,
   env: (name: string) => string | undefined,
 ): { name: string; value: string } | undefined {
-  for (const name of [spec.keyEnv, `DCWG_${spec.keyEnv}`]) {
+  for (const name of [spec.keyEnv, `DODO_${spec.keyEnv}`, `DCWG_${spec.keyEnv}`]) {
     const value = env(name);
     if (value) return { name, value };
   }
@@ -95,7 +96,7 @@ export function resolveApiKey(
 /** The message a run gives when the key is absent, naming the fix. */
 export function missingKeyMessage(spec: ProviderSpec): string {
   return `the wiki pass on ${spec.name} needs an API key: set ${spec.keyEnv} ` +
-    `(or DCWG_${spec.keyEnv} on this host), or pass --skip-wiki`;
+    `(or DODO_${spec.keyEnv} on this host), or pass --skip-wiki`;
 }
 
 /** One line for the run report, so a log says who answered and what it costs. */

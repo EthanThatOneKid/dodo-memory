@@ -2,7 +2,7 @@
 "@type": schema:TechArticle
 schema:name: Standard libraries and extensions
 schema:description: The 2026-10-16 #ende discussion of where a standard library ends and a runtime extension begins, whether the forks could share a Runtime global, and how a project would declare the extensions it needs in a manifest.
-wazoo:source: dcwg
+wazoo:source: dodo
 wiki:priority: medium
 ---
 

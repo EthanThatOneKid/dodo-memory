@@ -2,7 +2,7 @@
 "@type": schema:TechArticle
 schema:name: Community and press reaction
 schema:description: The videos, articles, and posts about Deno's move to Cloudflare and about the forks that `#general` participants shared between 2026-10-15 and 2026-11-11, and what the group said about them.
-wazoo:source: dcwg
+wazoo:source: dodo
 wiki:priority: low
 ---
 

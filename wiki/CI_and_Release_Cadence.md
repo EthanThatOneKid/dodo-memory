@@ -2,7 +2,7 @@
 "@type": schema:TechArticle
 schema:name: CI and release cadence
 schema:description: The 2026-10-14 to 2026-10-17 #ende discussion of how long the forks' CI runs, what Ende did to cut it from 34 to 13 minutes, the options for Dodo, and whether nightlies are worth keeping; plus a 2026-11-08 #general note on Dependabot and CodeQL being turned off for noise, and a 2026-11-11 #general note on Dodo pull request 17's failing checks and the Node 20 CI, and 2026-11-19 #brainstorm notes on self-hosted runners.
-wazoo:source: dcwg
+wazoo:source: dodo
 wiki:priority: medium
 ---
 

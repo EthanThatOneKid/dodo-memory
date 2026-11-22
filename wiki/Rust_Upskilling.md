@@ -2,7 +2,7 @@
 "@type": schema:TechArticle
 schema:name: Rust upskilling for the fork
 schema:description: The 2026-10-12 #propose thread on how the group should collectively learn Rust and V8, the self-reported skill levels, the hackathon proposal, and the advice on how to learn the relevant parts of an embedded engine.
-wazoo:source: dcwg
+wazoo:source: dodo
 wazoo:thread: "1559251707228192778"
 wiki:priority: high
 ---

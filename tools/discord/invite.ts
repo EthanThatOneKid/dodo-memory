@@ -1,6 +1,6 @@
 #!/usr/bin/env -S deno run -A
 /**
- * Build the read-only invite URL for the DCWG capture bot.
+ * Build the read-only invite URL for the Dodo capture bot.
  *
  * The connector owns its own Discord application, so this only needs that
  * application's client id. The URL requests View Channel and Read Message History
@@ -91,7 +91,7 @@ export function selfCheck(): string[] {
 
 const USAGE = `Usage: deno task invite -- <client-id> [--guild-id <id>] [--any-guild]
 
-  <client-id>     the DCWG Archive application's client id (digits only)
+  <client-id>     the Dodo Archive application's client id (digits only)
   --guild-id <id> server to preselect (default ${DEFAULT_GUILD})
   --any-guild     leave the server selectable instead of locked
   -h, --help      show this help`;

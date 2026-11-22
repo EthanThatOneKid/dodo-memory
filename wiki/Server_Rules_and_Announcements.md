@@ -2,7 +2,7 @@
 "@type": schema:TechArticle
 schema:name: Server rules and announcements
 schema:description: The four server rules posted in #rules on 2026-10-11 and the announcements in #news through 2026-10-18, including the first meeting, the onboarding change, and the dodo-bindgen announcement.
-wazoo:source: dcwg
+wazoo:source: dodo
 wiki:priority: low
 ---
 
