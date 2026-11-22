@@ -139,7 +139,9 @@ export async function findThreadPages(root: string): Promise<Map<string, string[
  *
  * `skipCaptures` names captures whose posts are not yet owed a page. A fold absorbs one
  * capture at a time, oldest first, so judging it against posts in captures still queued
- * behind it could never pass: the whole-tree check (CI, `gates.ts`) leaves it empty.
+ * behind it could never pass: the fold passes the captures queued behind the one it is
+ * folding. The whole-tree check (CI, `gates.ts`) passes the captures still in the fold
+ * queue, so a post is only owed a page once the fold has reached its capture.
  */
 export async function findThreadProblems(
   root: string,

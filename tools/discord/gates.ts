@@ -16,6 +16,24 @@
 import { runWikiGates } from "./wiki_gates.ts";
 import { findOrphans } from "./orphans.ts";
 import { findForumThreads, findThreadProblems } from "./thread_pages.ts";
+import { readPending } from "./pending.ts";
+
+/**
+ * Captures the wiki has not absorbed yet, from the fold queue in the
+ * connector's cursor file (`raw/discord/.cursor`, `_pending`). A missing or
+ * unreadable cursor means no queue, never a failed gate: the gates judge the
+ * tree, and the queue is only the skip list.
+ */
+async function queuedCaptures(root: string): Promise<string[]> {
+  try {
+    const store = JSON.parse(
+      await Deno.readTextFile(`${root}/raw/discord/.cursor`),
+    ) as Record<string, unknown>;
+    return readPending(store).map((fold) => fold.capture);
+  } catch {
+    return [];
+  }
+}
 
 export async function runGates(root: string): Promise<string[]> {
   const outcomes = await runWikiGates(`${root}/wiki.yml`);
@@ -38,17 +56,33 @@ export async function runGates(root: string): Promise<string[]> {
         `itself does not count.`,
   });
   /**
-   * Every forum post gets its own page. The output names the count it covered,
-   * because a pass over zero captures proves nothing and should not read like one
-   * that checked four proposals.
+   * Every forum post gets its own page, once the fold has reached its capture.
+   * Captures still in the fold queue are not yet owed a page: the ingest lands
+   * in the evening and the fold runs the next morning, so judging the tree
+   * against a queued post could never pass and only turned CI red between the
+   * two. The fold itself is the backstop: it judges a capture against the posts
+   * in the captures queued behind it, so a post is owed a page the moment its
+   * capture is the one being folded. The output names the count it covered and
+   * how many posts it skipped as not yet owed, because a pass over zero
+   * captures proves nothing and should not read like one that checked four
+   * proposals.
    */
-  const threadProblems = await findThreadProblems(root);
-  const postCount = (await findForumThreads(root)).length;
+  const threads = await findForumThreads(root);
+  const queued = new Set(await queuedCaptures(root));
+  const skippedCount = threads.filter((thread) => queued.has(thread.capture)).length;
+  const threadProblems = await findThreadProblems(root, queued);
+  const postCount = threads.length;
   outcomes.push({
     name: "threads",
     ok: threadProblems.length === 0,
     output: threadProblems.length === 0
-      ? (postCount ? `every one of ${postCount} forum post(s) has its own page` : "no post-shaped captures yet")
+      ? (postCount
+        ? (skippedCount
+          ? `every one of ${
+            postCount - skippedCount
+          } forum post(s) has its own page (${skippedCount} in queued capture(s) not yet owed a page)`
+          : `every one of ${postCount} forum post(s) has its own page`)
+        : "no post-shaped captures yet")
       : `a forum post is missing its own page:\n  - ${threadProblems.join("\n  - ")}`,
   });
 
