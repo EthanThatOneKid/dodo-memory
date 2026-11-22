@@ -152,6 +152,7 @@ The repository is public, so these files are readable in place. The same files a
 - [Sandboxed extension boundary](Sandboxed_Extension_Boundary.md): The 2026-10-22 to 2026-10-25
 - [Self-hosted deploy platform](Self_Hosted_Deploy_Platform.md): CaptainLach's standalone, self-hosted implementation of a Deno Deploy-style platform, as described in
 - [Server rules and announcements](Server_Rules_and_Announcements.md): The four server rules posted in
+- [Snapshot release action](Snapshot_Release_Action.md): daniellacosse's 2026-11-22 #propose thread on a manually-run snapshot release action for Dodo: separate the TypeScript that builds and signs the binary, build signed dated snapshots as GitHub releases named 'Dodo Snapshot <date> <ref>', and a possible install script.
 - [Standard libraries and extensions](Std_Libraries_and_Extensions.md): The 2026-10-16
 - [Sustaining the fork](Fork_Sustainability.md): The 2026-10-12
 - [TypeScript 7 and type-aware tooling](TypeScript_7_and_Tooling.md): The 2026-10-17 to 2026-11-07 discussion of how a Deno fork keeps up with TypeScript 7, the Rust port tsrs, and what type-aware linting needs, and why TypeScript upgrades fall outside Deno's promised maintenance.

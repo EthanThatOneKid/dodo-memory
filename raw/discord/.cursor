@@ -37,20 +37,6 @@
       "stalls": 0
     },
     {
-      "capture": "raw/discord/2026-11-22_dcwg-brainstorm.md",
-      "venue": "dcwg-brainstorm",
-      "messages": 2,
-      "offset": 0,
-      "stalls": 0
-    },
-    {
-      "capture": "raw/discord/2026-11-22_dcwg-propose.md",
-      "venue": "dcwg-propose",
-      "messages": 13,
-      "offset": 0,
-      "stalls": 0
-    },
-    {
       "capture": "raw/discord/2026-11-21_dcwg-general.md",
       "venue": "dcwg-general",
       "messages": 1,

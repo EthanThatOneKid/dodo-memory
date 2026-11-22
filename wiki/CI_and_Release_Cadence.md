@@ -64,7 +64,7 @@ Later the same day (23:48-23:54 UTC) `daniellacosse` said the CI is rough, that 
 
 ## Where it stands
 
-Nothing was decided for Dodo. Ende's numbers are a single before-and-after on a different codebase. The record does not show Dodo's own CI duration, or whether any of these changes were applied to it. On 2026-11-11 the record does show Dodo's CI state on pull request 17: 23 checks failing, with the Node 20 bump offered but not done.
+Nothing was decided for Dodo. Ende's numbers are a single before-and-after on a different codebase. The record does not show Dodo's own CI duration, or whether any of these changes were applied to it. On 2026-11-11 the record does show Dodo's CI state on pull request 17: 23 checks failing, with the Node 20 bump offered but not done. On 2026-11-22 `daniellacosse` proposed a separate snapshot release action instead of modifying the existing CI: [Snapshot release action](Snapshot_Release_Action.md).
 
 ## Related
 
