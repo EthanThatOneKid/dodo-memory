@@ -1,7 +1,7 @@
 ---
 "@type": schema:TechArticle
 schema:name: CI and release cadence
-schema:description: The 2026-10-14 to 2026-10-17 #ende discussion of how long the forks' CI runs, what Ende did to cut it from 34 to 13 minutes, the options for Dodo, and whether nightlies are worth keeping; plus a 2026-11-08 #general note on Dependabot and CodeQL being turned off for noise, and a 2026-11-11 #general note on Dodo pull request 17's failing checks and the Node 20 CI.
+schema:description: The 2026-10-14 to 2026-10-17 #ende discussion of how long the forks' CI runs, what Ende did to cut it from 34 to 13 minutes, the options for Dodo, and whether nightlies are worth keeping; plus a 2026-11-08 #general note on Dependabot and CodeQL being turned off for noise, and a 2026-11-11 #general note on Dodo pull request 17's failing checks and the Node 20 CI, and 2026-11-19 #brainstorm notes on self-hosted runners.
 wazoo:source: dcwg
 wiki:priority: medium
 ---
@@ -59,6 +59,8 @@ On 2026-11-16 in `#brainstorm` `CaptainLach` said `denoland/deno#37008` can be c
 ## Self-hosted runners and a dispatch system (2026-11-19)
 
 On 2026-11-19 `SpaceMonkey` said in `#brainstorm`, replying to `daniellacosse`, that an addition could not really be considered until it passes the respective tests, and that he was closing the gap on tests, expecting something stable the next day. He was also writing a self-hosted runner dispatching system to keep jobs moving on the most powerful runner available first: GitHub's Mac runner limitations had almost required the use of self-hosted runners, which he called the first bottleneck. See [Sandboxed extension boundary](Sandboxed_Extension_Boundary.md) for the permissions work he mentioned in the same message.
+
+Later the same day (23:48-23:54 UTC) `daniellacosse` said the CI is rough, that there are a few ways to improve it, and that it will probably be a natural next step for him to tackle after he figures out the release process. The easiest option, in his view, is probably for the group to collectively chip in for some self-hosted runners once it has a fundraising mechanism like OSC. He was looking at Open Collective's features the same evening in `#propose`; see [Formalizing the community](Formalizing_the_Community.md) and [Sustaining the fork](Fork_Sustainability.md).
 
 ## Where it stands
 

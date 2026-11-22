@@ -30,30 +30,9 @@
   "1562265796929916938": "1571658708054966393",
   "_pending": [
     {
-      "capture": "raw/discord/2026-11-19_dcwg-brainstorm-2.md",
-      "venue": "dcwg-brainstorm",
-      "messages": 2,
-      "offset": 0,
-      "stalls": 0
-    },
-    {
-      "capture": "raw/discord/2026-11-19_dcwg-propose-2.md",
-      "venue": "dcwg-propose",
-      "messages": 5,
-      "offset": 0,
-      "stalls": 0
-    },
-    {
       "capture": "raw/discord/2026-11-19_dcwg-general-2.md",
       "venue": "dcwg-general",
       "messages": 4,
-      "offset": 0,
-      "stalls": 0
-    },
-    {
-      "capture": "raw/discord/2026-11-21_dcwg-propose.md",
-      "venue": "dcwg-propose",
-      "messages": 3,
       "offset": 0,
       "stalls": 0
     }

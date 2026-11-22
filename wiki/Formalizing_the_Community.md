@@ -1,7 +1,7 @@
 ---
 "@type": schema:TechArticle
 schema:name: Formalizing the community
-schema:description: "The 2026-11-19 #propose thread on giving the Deno Core Working Group a formal structure: Ethan's four options, lishaduck's OpenCollective counter, and the poll planned after Fri Nov 20, 5pm PT."
+schema:description: "The 2026-11-19 #propose thread on giving the Deno Core Working Group a formal structure: Ethan's four options, lishaduck's OpenCollective counter, the Open Collective admin question, the question of whether to apply for Open Collective or wait, and the poll planned after Fri Nov 20, 5pm PT."
 wazoo:source: dcwg
 wazoo:thread: "1572787160032084020"
 wiki:priority: high
@@ -26,9 +26,19 @@ Ethan noted the group already has the `are-we-dodo-yet` org on GitHub and that t
 
 He added in a follow-up that this is not to say the topic is not good to bring up: it is most definitely an important topic to think about, especially with foundation talks stalling as they have. That stalling is his characterization; the Deno foundation effort itself is recorded in [Foundation outreach and Bart's reply](Foundation_Outreach.md).
 
+## Open Collective: who approves spending?
+
+On 2026-11-19 (23:40-23:43 UTC) `daniellacosse` asked whether Open Collective lets funds be managed only via administrators, saying he had hoped for a way for multiple community members to approve things the way a pull request is approved. `CaptainLach` answered that members can request and endorse, but approvals are on admins. `daniellacosse` then asked who the group is comfortable with as the admins managing those funds: 1:1 with the admins of this Discord, decided by vote, or simply starting from there, with admins 1:1 on Open Collective, and seeing how it feels.
+
+`lishaduck` replied (2026-11-20T01:20:41Z) that in his mind the Dodo community is the Discord, and therefore the mods of the Discord are the mods of Dodo, adding that the people in the thread are the ones actually doing the work.
+
+## Apply for Open Collective, or wait?
+
+On 2026-11-21 (14:19-14:20 UTC) `daniellacosse` asked the thread's big question: whether the Deno foundation is going to happen, and whether the group should just go ahead and apply for Open Collective or wait a bit longer first. He floated applying and hoping they do not need it. `CaptainLach` answered that they should apply.
+
 ## Where it stands
 
-No option was chosen in the capture, and no poll result is in it. The thread was still open at the end of the capture (2026-11-19T01:56:19Z), with the poll due after Fri Nov 20, 5pm PT. The governance question it raises — who has authority to decide — was already open in [Foundation outreach and Bart's reply](Foundation_Outreach.md), and the funding side is in [Sustaining the fork](Fork_Sustainability.md).
+No option was chosen in the capture, and no poll result is in it. The thread was still open at the end of the capture (2026-11-21T14:20:14Z), with the poll due after Fri Nov 20, 5pm PT. No decision on Open Collective admins is recorded in the capture. The governance question it raises — who has authority to decide — was already open in [Foundation outreach and Bart's reply](Foundation_Outreach.md), and the funding side is in [Sustaining the fork](Fork_Sustainability.md).
 
 ## Related
 
