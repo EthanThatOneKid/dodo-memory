@@ -1,7 +1,7 @@
 ---
 "@type": schema:TechArticle
 schema:name: Community and press reaction
-schema:description: The videos, articles, and posts about Deno's move to Cloudflare and about the forks that `#general` participants shared between 2026-10-15 and 2026-11-11, and what the group said about them.
+schema:description: The videos, articles, and posts about Deno's move to Cloudflare and about the forks that `#general` participants shared between 2026-10-15 and 2026-11-21, what the group said about them, and participants' reactions to losing Deno Deploy's one-click publishing.
 wazoo:source: dodo
 wiki:priority: low
 ---
@@ -24,6 +24,11 @@ wiki:priority: low
 - **Val Town winding down, 2026-11-10.** Ethan shared [his own post on X](https://x.com/etok_me/status/2120217494690689122?a=9Sz7DqZQkxr1F6sE33Y&s=20), calling Val Town "the first major @deno_land-native product I've seen shut down" and saying that, given the funding landscape for developer tools, he expects it will not be the last. The shutdown itself is confirmed by Val Town's own blog post the same day, "Val Town is winding down": new sign-ups and plan upgrades stop 2026-11-10, the service becomes read-only 2026-12-10, all remaining services shut down 2027-01-10, and Val Town's code is released as open source 2027-02-01.[^1] Ethan's expectation of further shutdowns is his own, not a fact in the post.
 - **A Reddit post about Dodo, 2026-11-11.** `SpaceMonkey` shared a Reddit post about Dodo that Reddit had notified him about. A reply in it spoke of "OpenDeno", which `netop://ウィビ` said was created three days earlier. See [Deno fork options and naming](Deno_Fork_Options.md).
 - **Leaving the Deno server, 2026-11-11.** `netop://ウィビ` said a sign of a dead server is constant spam, and that he had just left the Deno Discord.
+- **An X post, 2026-11-19.** `Varad` shared a post by `rough__sea` whose embed read "@opentestudox we're exploring it," with a screenshot attached. `daniellacosse` said he was glad they are still looking into it. The post itself was not read for this record, and the screenshot link had expired by the time of the fold, so this record does not say what the post was about.
+
+## Losing the easy publish
+
+On 2026-11-21 `Summer` said she was "still so upset" about losing the ability to "throw a chunk of normal JS onto the internet," which she called her favorite part of Deno's ecosystem, and that she did not want "the 20000 subservices of cloudflare or aws or etc etc." She did not name Deno Deploy, but the workflow she describes is its one-click publishing; the group's answer to losing it is [CaptainLach's self-hosted deploy platform](Self_Hosted_Deploy_Platform.md). See [Deno Deploy architecture](Deno_Deploy_Architecture.md).
 
 ## Which forks exist, as the group describes them
 
