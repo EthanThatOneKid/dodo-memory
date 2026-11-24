@@ -8,7 +8,7 @@ wiki:priority: medium
 
 # Captures
 
-Everything in this memory is derived from the 100 captures below. They are reproduced verbatim, including Discord handles, message timestamps, and the parts where people disagree with each other, because a record that only keeps the conclusions cannot be checked.
+Everything in this memory is derived from the 101 captures below. They are reproduced verbatim, including Discord handles, message timestamps, and the parts where people disagree with each other, because a record that only keeps the conclusions cannot be checked.
 
 The repository is public, so these files are readable in place. The same files are also served verbatim by this site under the repository's `raw/` path, so the evidence travels with the pages that cite it.
 
@@ -111,6 +111,7 @@ The repository is public, so these files are readable in place. The same files a
 - [Discord #propose — 2026-11-22](https://EthanThatOneKid.github.io/dodo-memory/raw/discord/2026-11-22_dcwg-propose.md): Append-only capture of #propose from 2026-11-22T01:27:34Z to 2026-11-22T17:06:44Z, pulled from the Discord REST API. 13 messages, 2 participants, across 2 threads.
 - [Discord #brainstorm — 2026-11-23](https://EthanThatOneKid.github.io/dodo-memory/raw/discord/2026-11-23_dcwg-brainstorm.md): Append-only capture of #brainstorm from 2026-11-23T12:21:14Z to 2026-11-23T18:40:57Z, pulled from the Discord REST API. 3 messages, 2 participants.
 - [Discord #general — 2026-11-23](https://EthanThatOneKid.github.io/dodo-memory/raw/discord/2026-11-23_dcwg-general.md): Append-only capture of #general from 2026-11-23T14:33:51Z to 2026-11-23T15:26:04Z, pulled from the Discord REST API. 2 messages, 2 participants.
+- [Discord #propose — 2026-11-23](https://EthanThatOneKid.github.io/dodo-memory/raw/discord/2026-11-23_dcwg-propose.md): Append-only capture of #propose from 2026-11-23T23:00:12Z to 2026-11-23T23:05:32Z, pulled from the Discord REST API. 2 messages, 2 participants, across 1 thread.
 - [Discord #brainstorm — 2026-11-24](https://EthanThatOneKid.github.io/dodo-memory/raw/discord/2026-11-24_dcwg-brainstorm.md): Append-only capture of #brainstorm from 2026-11-24T13:46:58Z to 2026-11-24T19:54:41Z, pulled from the Discord REST API. 61 messages, 4 participants.
 
 ## Pasted briefs
