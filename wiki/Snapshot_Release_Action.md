@@ -27,9 +27,13 @@ He added that he could also hack together a rudimentary "install" script that pu
 
 `daniellacosse` said that if a foundation does not materialize, the group should delete the action and revert to Deno's standard release process, which would need to be updated at that time.
 
+## Build targets: macOS Intel?
+
+On 2026-11-22 `SpaceMonkey` asked whether to discontinue macOS Intel builds early, saying GitHub ends them in the fall of 2027 and Rosetta will be effectively dead by then. He said he will do this soon for the Deno fork for Denext, that Intel builds are the slowest even with self-hosted runners, and that he has an Intel Mac, although half of it is a UTM Windows x64 runner. `daniellacosse` answered on 2026-11-23 that in the name of continuity the group should keep the same targets for now. The GitHub and Rosetta dates are `SpaceMonkey`'s claims, not verified here.
+
 ## Where it stands
 
-A proposal only. No decision is recorded in the capture, and no one else replied in the thread in it. The thread was still open at the end of the capture (2026-11-22T01:35:00Z).
+A proposal only. The thread continued to 2026-11-23T15:24:48Z with the macOS Intel exchange above: no decision to drop Intel builds, continuity chosen for now. The snapshot action itself remains a proposal with no decision recorded.
 
 ## Related
 

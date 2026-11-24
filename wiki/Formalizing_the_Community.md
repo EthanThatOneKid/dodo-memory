@@ -1,7 +1,7 @@
 ---
 "@type": schema:TechArticle
 schema:name: Formalizing the community
-schema:description: "The 2026-11-19 #propose thread on giving the Deno Core Working Group a formal structure: Ethan's four options, lishaduck's OpenCollective counter, the Open Collective admin question, the question of whether to apply for Open Collective or wait, and the poll planned after Fri Nov 20, 5pm PT."
+schema:description: "The 2026-11-19 #propose thread on giving the Deno Core Working Group a formal structure: Ethan's four options, lishaduck's OpenCollective counter, the Open Collective admin question, the question of whether to apply for Open Collective or wait, the poll planned after Fri Nov 20, 5pm PT, and daniellacosse's application to Open Collective on 2026-11-23."
 wazoo:source: dodo
 wazoo:thread: "1572787160032084020"
 wiki:priority: high
@@ -42,9 +42,13 @@ On 2026-11-22 (17:01-17:06 UTC) `Ethan:Print"Ethan";:GoTo Ethan` asked what OSC 
 
 `daniellacosse` agreed that W3C could still be in the cards, making sense specifically around the subgoal of pursuing web standards, but said "we're not there yet". Ethan agreed. `daniellacosse` then suggested that to start, the group should probably show up to various W3C meetings — he had gone to a few recently and found it interesting — to represent Deno, "slash Dodo".
 
+## Applied to Open Collective
+
+On 2026-11-23 `daniellacosse` said in the thread, "Applied to OSC!" (15:26:12Z), and in `#general` the same minute, "Applied to OSC btw! Will let everyone know when I hear back" (15:26:04Z). The group has applied for Open Collective. No reply is recorded in the capture, and the admin question — who the group is comfortable with as admins — is still open.
+
 ## Where it stands
 
-No option was chosen in the capture, and no poll result is in it. The thread was still open at the end of the capture (2026-11-22T17:06:44Z), with the poll due after Fri Nov 20, 5pm PT. No decision on Open Collective admins is recorded in the capture. The W3C community group option is back on the table as a complement to Open Collective, not a replacement, with showing up to W3C meetings as the suggested first step. The governance question it raises — who has authority to decide — was already open in [Foundation outreach and Bart's reply](Foundation_Outreach.md), and the funding side is in [Sustaining the fork](Fork_Sustainability.md).
+No option was chosen in the capture, and no poll result is in it. The thread was still open at the end of the capture (2026-11-23T15:26:12Z), with the poll due after Fri Nov 20, 5pm PT. The Open Collective application is filed, with no reply recorded; `daniellacosse` said he will report back when he hears. No decision on Open Collective admins is recorded in the capture. The W3C community group option is back on the table as a complement to Open Collective, not a replacement, with showing up to W3C meetings as the suggested first step. The governance question it raises — who has authority to decide — was already open in [Foundation outreach and Bart's reply](Foundation_Outreach.md), and the funding side is in [Sustaining the fork](Fork_Sustainability.md).
 
 ## Related
 
