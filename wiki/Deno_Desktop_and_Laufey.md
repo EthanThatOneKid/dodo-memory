@@ -1,7 +1,7 @@
 ---
 "@type": schema:TechArticle
 schema:name: Deno Desktop and Laufey
-schema:description: The 2026-10-16 to 2026-10-31 discussion of Deno Desktop's webview layer Laufey, a contributor's open fixes, whether to switch to wry, the licensing and CLA question, a competing fork, and webview permissions.
+schema:description: The 2026-10-16 to 2026-11-24 discussion of Deno Desktop's webview layer Laufey, a contributor's open fixes, whether to switch to wry, the licensing and CLA question, a competing fork, webview permissions, and Denext's work against the triage board.
 wazoo:source: dodo
 wiki:priority: low
 ---
@@ -42,6 +42,17 @@ Asked by `daniellacosse` what she is having to harden, `Summer` pointed to a wri
 In `#general` on 2026-11-08, `Summer` linked three upstream Deno items, saying “its more these issues”:[^5] a discussion proposing traversal-resistant file APIs modeled on Go's `openRoot` ([denoland/deno #36651](https://github.com/denoland/deno/discussions/36651)), and two desktop issues, one for verifying the sender of messages over desktop bindings ([denoland/deno #36861](https://github.com/denoland/deno/issues/36861)) and one for a `will-navigate` event with `preventDefault` support ([denoland/deno #36860](https://github.com/denoland/deno/issues/36860)). The two desktop issues quote Electron's security checklist items 17 and 13 — the same two items `Summer` said on 2026-10-30 were impossible in Deno Desktop. `SpaceMonkey` replied that he would do all three in his fork, estimating “a couple weeks (AI's guess).” See [Deno permission-model security](Deno_Permission_Model_Security.md) for the thread.
 
 Separately, in `#ende` on 2026-11-07, `netop://ウィビ` reported that Ende fixed the Windows desktop issues upstream: each app now gets its own WebView2 user data folder, so an MSI-installed app under Program Files no longer fails with `E_ACCESSDENIED` and a blank window — the `#36768` problem `Tadda` cited on 2026-10-17. See [Ende](Ende_Runtime.md).
+
+## Denext work against the triage board (2026-11-24)
+
+On 2026-11-24 in `#brainstorm` `SpaceMonkey` said he had assigned the last four issues to himself and was working on the pull requests, and that the first two require a fork of [Laufey](https://github.com/littledivy/laufey). `daniellacosse` said the participant at handle `1559636246362333259` is working on the fork, and that those two could be assigned to them.
+
+The same day `daniellacosse` asked whether anything in Denext lines up with the unowned issues in the "Current Work" tab or the leftovers in the "needs review" tab of the triage board. `SpaceMonkey` answered that the "ready" issues with no owner are a short list: support Bun packages, OPFS support, Gamepad API support, and automating pulling upstream Deno changes. Of those, three have nothing in Denext — OPFS (#24), Gamepad (#25), and the upstream sync (#2) — but two partly overlap:
+
+- **#32, webview network restrictions.** Denext has a top-level navigation guard: navigations stay on the app's origin, other `http(s)` links open in the system browser, with an origin allowlist. It does not filter subresource or fetch requests, so `SpaceMonkey` called it a starting point, not the whole thing.
+- **#13, Bun packages.** Denext has `Deno.SQL`, which implements Bun's `Bun.sql` API, and `deno test` supports the Vitest/Jest API, which he said is most of what `bun:test` is. There are no `bun:` specifiers or `Bun.*` globals, so it is only relevant if that card ever gets picked up.
+
+Those are `SpaceMonkey`'s accounts of his own fork, not checked here. See [Dodo project roadmap](Project_Roadmap.md) for the board discussion the same day.
 
 ## Open questions
 

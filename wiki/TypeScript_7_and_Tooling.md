@@ -1,7 +1,7 @@
 ---
 "@type": schema:TechArticle
 schema:name: TypeScript 7 and type-aware tooling
-schema:description: The 2026-10-17 to 2026-11-07 discussion of how a Deno fork keeps up with TypeScript 7, the Rust port tsrs, and what type-aware linting needs, and why TypeScript upgrades fall outside Deno's promised maintenance.
+schema:description: The 2026-10-17 to 2026-11-24 discussion of how a Deno fork keeps up with TypeScript 7, the Rust port tsrs, the sync-types decoupling proposal, and what type-aware linting needs, and why TypeScript upgrades fall outside Deno's promised maintenance.
 wazoo:source: dodo
 wiki:priority: low
 ---
@@ -28,11 +28,26 @@ On 2026-10-20 `netop://ウィビ` shared a Cloudflare blog post introducing `tsr
 
 It shipped three days later: `netop://ウィビ` announced Ende release `v2026.11.10` on 2026-11-10, which adds TypeScript 7 type checking behind `--unstable-tsc7`. The GitHub API read on 2026-11-11 shows the release published 2026-11-10T02:43:12Z.[^3] See [Ende](Ende_Runtime.md).
 
+## The sync-types decoupling proposal (2026-11-24)
+
+On 2026-11-24 in `#brainstorm` the group returned to the type-checking question, prompted by `daniellacosse` noting that TypeScript 7 may take a discussion, since the group had talked about switching TypeScript engines. `lishaduck` said `tsgo` is "very much not designed with embeddability in mind," and that the `tsrs` project had been thrown out as an option but the group had agreed it was still pretty new and probably worth holding off on any migration for now.
+
+His proposal instead was the `sync-types` work: it is not tied to the TypeScript engine, and in his view is a pretty important improvement either way, as it allows unbundling TypeScript. The group could potentially do that and drop TypeScript from the core at all, just loading `tsgo` or `tsrs` as an extension if `deno check` is desired. That would not affect running TypeScript, just checking it, since Deno uses `swc` under the hood, in his account.
+
+`lishaduck` explained the current arrangement: Deno uses `swc` for stripping types and bundles a fork of TypeScript 6.x for type checking. The group does not want to change how types are stripped — that would be a different discussion — but wants to decouple how types are checked by removing all of the forked functionality. Right now, he said, the fork exists "just to magically inject some files," which `sync-types` handles by just writing them to disk instead. "Just" is pretty load-bearing, he added, but it is mostly that. The payoff he named: all of the "normal" TypeScript tooling (`tseslint`, `oxlint-tsgolint`, `tsrs-lint`, `flint`) can work with it, the group would not have to maintain its own fork of `tsgo` — which he said is much more painful than for the JavaScript version — and it could decouple to allow things like `@effect/tsgo` or `tsrs` to be used out of the box.
+
+`daniellacosse` said he can update the ticket to reflect this, calling it "a major undertaking to be sure," and left it with no owner for now. See [Deno permission-model security](Deno_Permission_Model_Security.md) for the `openRoot` and permission-broker work assigned the same day.
+
+## TypeScript 7.1 and embeddability (2026-11-24)
+
+In the same thread `SpaceMonkey` said TypeScript 7.1 is supposed to change the embeddability picture — "or that was the plan a few months ago" — and that in Denext he just runs it as a sidecar, linking [a gist](https://gist.github.com/nightness/662ebb2c211b00806ea9a925e3169e2b) describing how that is set up. He then said 7.1 was out that day, before correcting himself: nothing official yet. As of 2026-11-24, by his account, the newest version is the nightly `7.1.0-dev.20261124.1`, the RC tag still points at `7.0.1-rc`, and [the 7.1 milestone](https://github.com/microsoft/TypeScript/milestone/225) still has a few open items. None of that was checked here.
+
 ## Open questions
 
 - Whether Dodo adopts TypeScript 7, a Rust port, or stays on Deno's current support, and when.
 - Whether type-aware linting is in scope. It is `lishaduck`'s interest, and nobody else weighed in.
 - Who owns the decision. `w` called it a decision item; nobody has taken it.
+- Who owns the `sync-types` work. `daniellacosse` said on 2026-11-24 he can update the ticket, but left it with no owner.
 
 ## Related
 

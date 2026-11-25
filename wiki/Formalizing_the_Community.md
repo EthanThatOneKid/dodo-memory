@@ -46,9 +46,11 @@ On 2026-11-22 (17:01-17:06 UTC) `Ethan:Print"Ethan";:GoTo Ethan` asked what OSC 
 
 On 2026-11-23 `daniellacosse` said in the thread, "Applied to OSC!" (15:26:12Z), and in `#general` the same minute, "Applied to OSC btw! Will let everyone know when I hear back" (15:26:04Z). The group has applied for Open Collective. No reply is recorded in the capture, and the admin question — who the group is comfortable with as admins — is still open.
 
+Later that evening (23:00-23:05 UTC) `Ethan:Print"Ethan";:GoTo Ethan` replied in the thread, "This is huge! Thanks for moving this proposal forward 🔥", and `daniellacosse` answered, "Thank you for the push forward!!"
+
 ## Where it stands
 
-No option was chosen in the capture, and no poll result is in it. The thread was still open at the end of the capture (2026-11-23T15:26:12Z), with the poll due after Fri Nov 20, 5pm PT. The Open Collective application is filed, with no reply recorded; `daniellacosse` said he will report back when he hears. No decision on Open Collective admins is recorded in the capture. The W3C community group option is back on the table as a complement to Open Collective, not a replacement, with showing up to W3C meetings as the suggested first step. The governance question it raises — who has authority to decide — was already open in [Foundation outreach and Bart's reply](Foundation_Outreach.md), and the funding side is in [Sustaining the fork](Fork_Sustainability.md).
+No option was chosen in the capture, and no poll result is in it. The thread was still open at the end of the capture (2026-11-23T23:05:32Z), with the poll due after Fri Nov 20, 5pm PT. The Open Collective application is filed, with no reply recorded; `daniellacosse` said he will report back when he hears. No decision on Open Collective admins is recorded in the capture. The W3C community group option is back on the table as a complement to Open Collective, not a replacement, with showing up to W3C meetings as the suggested first step. The governance question it raises — who has authority to decide — was already open in [Foundation outreach and Bart's reply](Foundation_Outreach.md), and the funding side is in [Sustaining the fork](Fork_Sustainability.md).
 
 ## Related
 

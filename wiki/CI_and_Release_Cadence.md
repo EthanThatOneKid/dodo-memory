@@ -1,7 +1,7 @@
 ---
 "@type": schema:TechArticle
 schema:name: CI and release cadence
-schema:description: The 2026-10-14 to 2026-10-17 #ende discussion of how long the forks' CI runs, what Ende did to cut it from 34 to 13 minutes, the options for Dodo, and whether nightlies are worth keeping; plus a 2026-11-08 #general note on Dependabot and CodeQL being turned off for noise, and a 2026-11-11 #general note on Dodo pull request 17's failing checks and the Node 20 CI, and 2026-11-19 #brainstorm notes on self-hosted runners.
+schema:description: The 2026-10-14 to 2026-10-17 #ende discussion of how long the forks' CI runs, what Ende did to cut it from 34 to 13 minutes, the options for Dodo, and whether nightlies are worth keeping; plus a 2026-11-08 #general note on Dependabot and CodeQL being turned off for noise, a 2026-11-11 #general note on Dodo pull request 17's failing checks and the Node 20 CI, 2026-11-19 #brainstorm notes on self-hosted runners, and 2026-11-24 #brainstorm notes on pulling in Deno 2.9.8.
 wazoo:source: dodo
 wiki:priority: medium
 ---
@@ -56,6 +56,20 @@ On 2026-11-16 in `#brainstorm` `CaptainLach` said `denoland/deno#37008` can be c
 
 `CaptainLach` answered that the latest Deno is just Deno including a partial fix for eMudhra, and that he had an issue with a couple of things the group might want to cherry-pick that were also released in 2.9.8, but he had looked into them and was not confident those fixes are correct and acceptable to be merged as-is. `daniellacosse` answered: "Alright. We'll just do it case by case then."
 
+## Pulling in Deno 2.9.8: pull request 39 (2026-11-24)
+
+On 2026-11-24 in `#brainstorm` `SpaceMonkey` pointed out that the fork is on Deno 2.9.7 while 2.9.8 is released, and offered to open a pull request to catch up with the upstream Deno branch, or at least to the 2.9.8 commit. `daniellacosse` answered that it is just a partial eMudhra fix, "but we should do that anyway," and thanked him.
+
+`SpaceMonkey` then opened [`are-we-dodo-yet/dodo` pull request 39, "chore: sync upstream Deno v2.9.8"](https://github.com/are-we-dodo-yet/dodo/pull/39), a draft, created 2026-11-24T15:39:17Z and still open when read through the GitHub API on 2026-11-25.[^1] It cherry-picks the three of 2.9.8's thirteen fixes that Dodo lacked — the other ten had already landed upstream before the fork point:
+
+- **Runtime / core:** keep op contexts alive until the isolate is disposed ([denoland/deno#37026](https://github.com/denoland/deno/pull/37026)), fixing a use-after-free at shutdown seen with lint plugins.
+- **Security, npm:** validate package link names in the `node_modules` installers ([denoland/deno#37047](https://github.com/denoland/deno/pull/37047)), so a crafted package name cannot write links outside `node_modules`.
+- **Security, TLS:** distrust the compromised eMudhra certificate authorities ([denoland/deno#37046](https://github.com/denoland/deno/pull/37046)).
+
+In Discord `SpaceMonkey` said the pull request "includes the complete eMudhra fix: rustls-webpki 0.103.16 plus webpki-roots/root-certs 1.0.10, with no 0.26 shim left in Cargo.lock, so cargo audit is clean on those advisories." The pull request body makes the same version claim and explains why the fix is complete in Dodo where upstream's is partial: upstream's 2.9.8 lockfile still carries `webpki-roots` 0.26.11, pulled in by its pinned `reqwest` 0.12.5 and `hyper-rustls` 0.27.2, while Dodo already uses `reqwest` 0.13.5 and `hyper-rustls` 0.27.10, which depend only on the fixed 1.x roots. The body also says he checked the lockfile versions but did not run `cargo audit` on the branch, so the clean-audit claim is his, not a run recorded here. The version string stays `2.9.7`: Dodo has not bumped versions or cut releases of its own. The pull request overlaps pull request 20 (dependency updates) in three files; its body says the two source files merge cleanly and the one real conflict is in `Cargo.toml`.
+
+`CaptainLach` answered that Dodo already had no references to eMudhra, and that its implementation is "even more complete that upstream deno implementation." On the `aws-lc` side he doubted the update would pass tests in its current implementation, and said the group should merge the updates first: pull request 20. He also said he will look into [denoland/deno#37026](https://github.com/denoland/deno/pull/37026) — the op-context fix the pull request cherry-picks — adding, "it seems very wrong that there is an UAF in safe code?.."
+
 ## Self-hosted runners and a dispatch system (2026-11-19)
 
 On 2026-11-19 `SpaceMonkey` said in `#brainstorm`, replying to `daniellacosse`, that an addition could not really be considered until it passes the respective tests, and that he was closing the gap on tests, expecting something stable the next day. He was also writing a self-hosted runner dispatching system to keep jobs moving on the most powerful runner available first: GitHub's Mac runner limitations had almost required the use of self-hosted runners, which he called the first bottleneck. See [Sandboxed extension boundary](Sandboxed_Extension_Boundary.md) for the permissions work he mentioned in the same message.
@@ -71,3 +85,7 @@ Nothing was decided for Dodo. Ende's numbers are a single before-and-after on a 
 - [Ende](Ende_Runtime.md): the project whose CI was measured.
 - [Benchmarking dodo](Dodo_Benchmarks.md): the other thread about measuring Dodo's cost.
 - [Rust core rewrite proposal](Rust_Core_Proposal.md): the prototype whose build time `netop://ウィビ` predicted would be longer.
+
+## Sources
+
+[^1]: [`are-we-dodo-yet/dodo` pull request 39](https://github.com/are-we-dodo-yet/dodo/pull/39), "chore: sync upstream Deno v2.9.8", read through the GitHub API on 2026-11-25: draft, open, created 2026-11-24T15:39:17Z by `nightness`, 3 commits, 14 files, +309/−42.

@@ -1,7 +1,7 @@
 ---
 "@type": schema:TechArticle
 schema:name: Deno permission-model security
-schema:description: The 2026-11-08 #general thread in which Summer argued Deno's permission flags carry undocumented footguns, SpaceMonkey answered with a kernel-enforcement plan for his Denext fork of Deno, and Summer pointed to three upstream Deno issues.
+schema:description: The 2026-11-08 #general thread in which Summer argued Deno's permission flags carry undocumented footguns, SpaceMonkey answered with a kernel-enforcement plan for his Denext fork of Deno, and Summer pointed to three upstream Deno issues; plus a 2026-11-24 #brainstorm note assigning the openRoot and permission-broker work to SpaceMonkey.
 wazoo:source: dodo
 wiki:priority: medium
 ---
@@ -68,6 +68,10 @@ The two desktop issues are the same Electron checklist items 13 and 17 that `Sum
 ## Connection to the earlier record
 
 This thread repeats, with a respondent, the points `Summer` first raised in `#ende` on 2026-10-27: that `--allow-read` and `--allow-write` scoped to a folder do not restrict where symlinks inside it lead, that the permission broker returns only yes or no rather than a file descriptor (open to a time-of-check-to-time-of-use race), and that the boundary should be enforced with Landlock on Linux. See [Ende](Ende_Runtime.md). `SpaceMonkey`'s queued fixes address exactly those three items — symlink-resolved allow scopes, an fd-returning broker, and kernel enforcement — in his fork rather than in Deno or Ende.
+
+## openRoot and the permission broker assigned (2026-11-24)
+
+On 2026-11-24 in `#brainstorm` `daniellacosse` said it sounds like the group can start with `openRoot` and the permission broker, and that he would assign those to `SpaceMonkey`. `SpaceMonkey` agreed: "That works 🙂". `SpaceMonkey` added that `Summer`'s suggestions regarding permissions are still experimental and need testing. That is the first assignment of the two items `Summer` linked on 2026-11-08 — the traversal-resistant file APIs discussion and the fd-returning broker — to a person; see [Deno Desktop and Laufey](Deno_Desktop_and_Laufey.md) for the Denext work `SpaceMonkey` was already doing against the triage board the same day.
 
 ## Where it stands
 

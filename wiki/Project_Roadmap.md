@@ -103,6 +103,14 @@ On 2026-11-17 `SpaceMonkey` answered the automations question: there are no auto
 
 On 2026-11-23 `daniellacosse` said a first pass had been done on the generated issues, and asked whether anything in denext lines up to the unowned issues in the "current work" tab or anything leftover in the "needs review" tab of the board (the `are-we-dodo-yet` organization's project 2, view 6). No answer is in the capture.
 
+On 2026-11-24 in `#brainstorm` `SpaceMonkey` answered it: the "ready" issues with no owner are a short list — support Bun packages, OPFS support, Gamepad API support, and automating pulling upstream Deno changes. Three of those have nothing in Denext (#24 OPFS, #25 Gamepad, #2 upstream sync), and two partly overlap: #32 webview network restrictions and #13 Bun packages. See [Deno Desktop and Laufey](Deno_Desktop_and_Laufey.md) for the details of that overlap, which are `SpaceMonkey`'s account of his own fork.
+
+## Native statuses, and copying Deno's issues into Dodo's repos (2026-11-24)
+
+Also on 2026-11-24 `lishaduck` asked whether it is worth switching the board from status fields to [native statuses](https://github.blog/changelog/2026-11-23-issue-statuses-and-repository-boards-are-in-public-preview/), linking GitHub's changelog post announcing issue statuses and repository boards in public preview. `daniellacosse` said he wishes they could, but there are some issues in the board from the Deno project that the group cannot edit, so the custom status fields are what let the group set status on issues it does not own.
+
+`lishaduck` then suggested copying those issues into the appropriate repos so the group can generally control its backlog: there are four of them, three of which are bugs in desktop. `daniellacosse` agreed, as long as they link back to the original issue — the hope was to be able to go back to the original issue and inform people that the bug was fixed in Dodo, and they would lose continuity with any updates on the source ticket, but linking back would work there too. `lishaduck` said he would be happy to do it, and later the same day reported, "Filed those issues!" `daniellacosse` said he would give `lishaduck` write permissions sometime that day, and later sent the invite. Whether the copies were filed as Dodo issues or elsewhere is not in the capture.
+
 ## Related
 
 - [Deno Core Working Group](Deno_Core_Working_Group.md): the group the roadmap is for.

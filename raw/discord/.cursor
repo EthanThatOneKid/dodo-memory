@@ -30,20 +30,5 @@
   "1562265796929916938": "1571658708054966393",
   "1572787160032084020": "1574561570959265807",
   "1573872541154418782": "1574445624349294705",
-  "_pending": [
-    {
-      "capture": "raw/discord/2026-11-24_dcwg-brainstorm.md",
-      "venue": "dcwg-brainstorm",
-      "messages": 61,
-      "offset": 0,
-      "stalls": 0
-    },
-    {
-      "capture": "raw/discord/2026-11-23_dcwg-propose.md",
-      "venue": "dcwg-propose",
-      "messages": 2,
-      "offset": 0,
-      "stalls": 0
-    }
-  ]
+  "_pending": []
 }
