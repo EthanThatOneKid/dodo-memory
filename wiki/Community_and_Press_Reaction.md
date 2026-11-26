@@ -1,7 +1,7 @@
 ---
 "@type": schema:TechArticle
 schema:name: Community and press reaction
-schema:description: The videos, articles, and posts about Deno's move to Cloudflare and about the forks that `#general` participants shared between 2026-10-15 and 2026-11-23, what the group said about them, and participants' reactions to losing Deno Deploy's one-click publishing.
+schema:description: The videos, articles, and posts about Deno's move to Cloudflare and about the forks that `#general` participants shared between 2026-10-15 and 2026-11-24, what the group said about them, and participants' reactions to losing Deno Deploy's one-click publishing.
 wazoo:source: dodo
 wiki:priority: low
 ---
@@ -25,7 +25,7 @@ wiki:priority: low
 - **A Reddit post about Dodo, 2026-11-11.** `SpaceMonkey` shared a Reddit post about Dodo that Reddit had notified him about. A reply in it spoke of "OpenDeno", which `netop://ウィビ` said was created three days earlier. See [Deno fork options and naming](Deno_Fork_Options.md).
 - **Leaving the Deno server, 2026-11-11.** `netop://ウィビ` said a sign of a dead server is constant spam, and that he had just left the Deno Discord.
 - **An X post, 2026-11-19.** `Varad` shared a post by `rough__sea` whose embed read "@opentestudox we're exploring it," with a screenshot attached. `daniellacosse` said he was glad they are still looking into it. The post itself was not read for this record, and the screenshot link had expired by the time of the fold, so this record does not say what the post was about.
-- **An early-alpha JSR package, 2026-11-23.** `𐑛𐑦𐑕𐑣𐑸𐑯𐑦 | 最不調和の伝播者 | 異議の元素` shared [fly-leaf on JSR](https://jsr.io/@ltgc/fly-leaf), described there as "Continuing Deno's web-first APIs without requiring Deno." The JSR page, read 2026-11-24, calls it a best-effort compatibility layer making the global Deno APIs available on multiple runtimes, and says it is not yet ready for prime time and is still being developed as a component of Octavia.[^2]
+- **An early-alpha JSR package, 2026-11-23.** `𐑛𐑦𐑕𐑣𐑸𐑯𐑦 | 最不調和の伝播者 | 異議の元素` shared [fly-leaf on JSR](https://jsr.io/@ltgc/fly-leaf), described there as "Continuing Deno's web-first APIs without requiring Deno." The JSR page, read 2026-11-24, calls it a best-effort compatibility layer making the global Deno APIs available on multiple runtimes, and says it is not yet ready for prime time and is still being developed as a component of Octavia.[^2] The next day, 2026-11-24, he shared version 0.0.2, saying he had got ESBuild running properly.
 
 ## Losing the easy publish
 
