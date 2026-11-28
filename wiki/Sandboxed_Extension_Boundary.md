@@ -84,6 +84,23 @@ On 2026-10-24 he also summarized `netop://ウィビ`'s second design as "every e
 
 On 2026-10-24 `Varad` arrived, wanting a runtime where every package is isolated like a website in a browser, and asked what the group is doing, what the plan is, and each contributor's role. `daniellacosse` replied that the plan lives in a separate proposals channel of which an extensions proposal is a part, and that the group was in a holding pattern waiting to hear back from a co-creator of Deno, called "bart" in the thread, about foundation progress. That is `daniellacosse`'s statement; this page does not confirm it.
 
+## Per-extension permissions, revisited 2026-11-26
+
+On 2026-11-26 in `#brainstorm` `daniellacosse` raised per-extension permissions again, asking what locking down permissions on a per-extension basis would entail. He said later in the exchange that the point of bringing it up was to solve the FFI problem: native code loaded through FFI runs with full trust, outside Deno's permission checks.
+
+`SpaceMonkey` answered with a write-up he had an AI produce, shared as a [gist](https://gist.github.com/nightness/291ed7805f239099d2e37bc3ed0e8018). The gist is an AI-written summary, not a group decision, and this page records what it proposes as `SpaceMonkey` summarized it in the capture. Its two layers:
+
+- **Layer 1, a grant per extension:** a manifest per extension approved at load, its own permission container (user flags intersected with the manifest) keyed by extension id, the caller's grant intersected too, and CLI and prompt output that names the extension. Today, the gist says, every extension checks one process-wide grant — the single `PermissionsContainer` in `OpState`, at 86 call sites — so `--allow-net` applies to all of them. The layer is mostly mechanical and enough for JS and WASM, but only guardrails for native code, which can skip the checks.
+- **Layer 2, kernel enforcement:** a host process per native extension applies a policy from the manifest (Landlock plus seccomp, Seatbelt, AppContainer); ops go over IPC, data paths stay in the host, and a broker hands over file descriptors for what a static policy cannot express. The hard parts it names are Windows parity, process startup, crash and lifecycle handling, and extensions that assume in-process `OpState`.
+
+The gist argues against treating in-process native code, linked or loaded through FFI and bindgen, as sandboxed, and against a seccomp- or Landlock-restricted thread as a boundary. It says WebRTC already checks every socket and resolved host through `check_net`, so it fits both layers with no redesign, and that the kernel side — Landlock and seccomp, Seatbelt, a broker, an exec gate — is already built in the Denext-Deno fork, while the host process and op proxy would be new. None of that is verified here: the gist itself was not read, and the Denext-Deno claims are `SpaceMonkey`'s.
+
+`daniellacosse` replied that the change would be huge and requires broader discussion, though the design sketched out is not far off from where previous discussions had landed — multiple isolates communicating over IPC. The crucial part for now, he said, is the WebRTC point: as long as WebRTC is built with permission checking mechanisms in place, it should be unblocked. He added that someone with a deeper understanding is free to weigh in.
+
+He then suggested the WebRTC implementation itself be a real-world demo of how deno-bindgen works, if possible. `SpaceMonkey` agreed, and set out the bindgen-plus-shim route: the Rust side is the same WebRTC engine, built as a dodo-bindgen library, with one permission gate — before the native side reaches any host or port (sockets, STUN and TURN servers, ICE candidates) it asks the JavaScript shim, and the shim answers from `Deno.permissions`, with no answer meaning no connection; the library is loaded with `--allow-ffi` scoped to just that library, so `--allow-net` still limits what it can reach; and the shim installs `RTCPeerConnection` and the other globals. The engine is the [rtci](https://github.com/Brainwires/rtci) library, which `SpaceMonkey` said originated from [webrtc-rs/rtc](https://github.com/webrtc-rs/rtc) but now surpasses it, and which he has decided to publish under the new name `rtci`, strictly following the WebRTC RFCs, with AI having written most of the remaining code. That is his account of his own work, not checked here. The integrated approach — WebRTC as a built-in extension, with every socket and resolved host checked by `check_net` — is already done and tested in the Denext-Deno fork, he said, and putting it in Dodo cost him almost nothing; it is a draft pull request.
+
+He said he will put the bindgen-plus-shim work on its own branch with only that option and no runtime changes, so it is easy to review on its own, and will benchmark it against the built-in version on throughput, latency, connection setup, CPU, and memory, so the trade-off is measured. `daniellacosse` answered, "Sounds good to me!" See [Dodo project roadmap](Project_Roadmap.md) for the WebRTC work this continues.
+
 ## Where it stands
 
 Nothing was decided, and no design was adopted. The state of the argument:
@@ -93,6 +110,8 @@ Nothing was decided, and no design was adopted. The state of the argument:
 - **Per-package runtime objects** were proposed by `CaptainLach` as a way to get the permission model without extensions as a security boundary, with no recorded verdict from `andy` or `w`.
 - `netop://ウィビ` said he might publish examples that weekend.
 
+On 2026-11-26 and 2026-11-27 `daniellacosse` and `SpaceMonkey` revisited per-extension permissions in `#brainstorm`. The two-layer design `SpaceMonkey` shared — per-extension grants now, kernel enforcement later — was treated as a huge change needing broader discussion, not adopted, but the WebRTC permission point was accepted as unblocking that work, and the bindgen-plus-shim WebRTC demo was agreed as the next step.
+
 On 2026-11-19 `SpaceMonkey` said in `#brainstorm` that he was a few days to a week away from finishing the kernel sandboxed permissions another participant (handle `130117195102552065`) had outlined, and offered to add that to Dodo as well. That participant is not named in the capture, and the design itself is not in it, so this records the claim and the offer, not the design. See [CI and release cadence](CI_and_Release_Cadence.md) for the runner work he mentioned in the same message.
 
 ## Open questions
@@ -101,6 +120,7 @@ On 2026-11-19 `SpaceMonkey` said in `#brainstorm` that he was a few days to a we
 - Whose permissions apply to a callback passed between extensions.
 - Whether per-extension isolates are worth roughly 10 MB each on desktop, against `w`'s own measurement.
 - Whether `CaptainLach`'s package-scoped runtime object can be made safe against leaked internals.
+- Whether the bindgen-plus-shim WebRTC demo validates the per-extension grant as a pattern for other native extensions.
 - Whether dynamic extensibility survives `w`'s cold-start finding.
 - What the missing proposal documents say beyond what the thread reports.
 
